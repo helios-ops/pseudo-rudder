@@ -1,0 +1,136 @@
+(LET let_k_0 = BVSX(H_FILE_source_a.txt__0,32)
+,
+let_k_1 = BVSX(IF(BVPLUS(32, 
+BVPLUS(32, 
+(let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+, 
+0hex0012FF80)
+, 
+0hexFFFFFB74)
+ = 0hex0012FAF4
+)
+THEN 0hex0A
+ELSE H_FILE_source_a.txt__0
+ENDIF[7:0],32)
+,
+let_k_2 = BVSX(0hex00,32)
+,
+let_k_3 = BVMULT(32, 
+(let_k_2[31:24] @ (let_k_2[23:16] @ (let_k_2[15:8] @ let_k_2[7:0])
+)
+)
+, 
+0hex0000000C)
+ IN 
+((TRUE AND NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ ((let_k_1[31:24] @ (let_k_1[23:16] @ (let_k_1[15:8] @ let_k_1[7:0])
+)
+)
+ & 0hex80000001)[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+
+) AND NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF((let_k_3[31:24] @ (let_k_3[23:16] @ (let_k_3[15:8] @ let_k_3[7:0])
+)
+)
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+
+))  6[7:0])
+)
+)
+, 
+0hex0000000C)
+ IN 
+((TRUE AND NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ let_k_2[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+
+) AND NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF((let_k_7[31:24] @ (let_k_7[23:16] @ (let_k_7[15:8] @ let_k_7[7:0])
+)
+)
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+
+))  UE AND NOT( NOT( ( 0bin0000000000000000000000000000000 @ 
+			      IF( NOT( IF( 0hex00000001 = ( 0hex00000001 & 
+							    ( 0bin0000000000000000000000000000000 @ let_k_2[31:31] )
+							  )
+					 )
+				       THEN 0bin1
+				       ELSE 0bin0
+				       ENDIF[0:0] = 0bin0
+				     ) 
+				)
+			      THEN 0bin1
+			      ELSE 0bin0
+			      ENDIF
+			    )[0:0][0:0] = 0bin0
+			  ) 
+		      ) 
+      ) AND NOT( NOT( ( 0bin0000000000000000000000000000000 @ 
+			IF( NOT( IF( ( let_k_7[31:24] @ ( let_k_7[23:16] @ 
+							  ( let_k_7[15:8] @ let_k_7[7:0] )
+							)
+				     )
+				     = 0hex00000000
+				   )
+				 THEN 0bin1
+				 ELSE 0bin0
+				 ENDIF[0:0] = 0bin0
+			       ) 
+		          )
+			THEN 0bin1
+			ELSE 0bin0
+			ENDIF)
+			[0:0][0:0] = 0bin0
+		      ) 
+                    ) 
+
+               )
+)  

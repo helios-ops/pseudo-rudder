@@ -1,0 +1,195 @@
+(LET let_k_0 = BVSX(H_FILE_source_1a.txt__0,32)
+,
+let_k_1 = BVPLUS(32, 
+BVPLUS(32, 
+(let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+, 
+0hex0012FF80)
+, 
+0hexFFFFFB74)
+,
+let_k_2 = (let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+,
+let_k_3 = BVSX(0hex00,32)
+,
+let_k_4 = BVMULT(32, 
+(let_k_3[31:24] @ (let_k_3[23:16] @ (let_k_3[15:8] @ let_k_3[7:0])
+)
+)
+, 
+0hex0000000C)
+,
+let_k_5 = BVSX(H_FILE_source_1a.txt__3,32)
+,
+let_k_6 = NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ (let_k_2 & 0hex80000001)[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+,
+let_k_7 = NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF((let_k_4[31:24] @ (let_k_4[23:16] @ (let_k_4[15:8] @ let_k_4[7:0])
+)
+)
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+,
+let_k_8 = NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(BVSUB(32, 
+(let_k_5[31:24] @ (let_k_5[23:16] @ (let_k_5[15:8] @ let_k_5[7:0])
+)
+)
+, 
+0hex00000001)
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+ IN 
+(((((((TRUE AND NOT((((BVLT(let_k_1,0hex00400000)
+ OR BVGT(let_k_1,0hex00426000)
+
+) AND (((BVLT(let_k_1,0hex00140000)
+ OR BVGT(let_k_1,0hex0023F000)
+
+) AND (BVLT(let_k_1,0hex00130000)
+ OR BVGT(let_k_1,0hex00132000)
+
+)
+) AND (((BVLT(let_k_1,0hex00250000)
+ OR BVGT(let_k_1,0hex0025F000)
+
+) AND (BVLT(let_k_1,0hex00240000)
+ OR BVGT(let_k_1,0hex0024F000)
+
+)
+) AND (((BVLT(let_k_1,0hex00280000)
+ OR BVGT(let_k_1,0hex002BC000)
+
+) AND (BVLT(let_k_1,0hex00260000)
+ OR BVGT(let_k_1,0hex00275000)
+
+)
+) AND (((BVLT(let_k_1,0hex00310000)
+ OR BVGT(let_k_1,0hex00315000)
+
+) AND (BVLT(let_k_1,0hex002C0000)
+ OR BVGT(let_k_1,0hex00300000)
+
+)
+) AND (((BVLT(let_k_1,0hex00370000)
+ OR BVGT(let_k_1,0hex003AF000)
+
+) AND (BVLT(let_k_1,0hex00320000)
+ OR BVGT(let_k_1,0hex00360000)
+
+)
+) AND ((BVLT(let_k_1,0hex003B0000)
+ OR BVGT(let_k_1,0hex003BD000)
+
+) AND ((BVLT(let_k_1,0hex003C0000)
+ OR BVGT(let_k_1,0hex003C0000)
+
+) AND ((BVLT(let_k_1,0hex003D0000)
+ OR BVGT(let_k_1,0hex003DF000)
+
+) AND (BVLT(let_k_1,0hex003E0000)
+ OR BVGT(let_k_1,0hex003E2000)
+
+)
+)
+)
+)
+)
+)
+)
+)
+)
+) AND (((BVLT(let_k_1,0hex7C920000)
+ OR BVGT(let_k_1,0hex7C9B3000)
+
+) AND ((BVLT(let_k_1,0hex7C800000)
+ OR BVGT(let_k_1,0hex7C91B000)
+
+) AND (((BVLT(let_k_1,0hex76D70000)
+ OR BVGT(let_k_1,0hex76D91000)
+
+) AND (BVLT(let_k_1,0hex00430000)
+ OR BVGT(let_k_1,0hex0052F000)
+
+)
+) AND ((BVLT(let_k_1,0hex77BD0000)
+ OR BVGT(let_k_1,0hex77BD7000)
+
+) AND ((BVLT(let_k_1,0hex77DA0000)
+ OR BVGT(let_k_1,0hex77E48000)
+
+) AND (BVLT(let_k_1,0hex77E50000)
+ OR BVGT(let_k_1,0hex77EE0000)
+
+)
+)
+)
+)
+)
+) AND (((BVLT(let_k_1,0hex7FFA0000)
+ OR BVGT(let_k_1,0hex7FFD2000)
+
+) AND (BVLT(let_k_1,0hex7F6F0000)
+ OR BVGT(let_k_1,0hex7F7EF000)
+
+)
+) AND ((BVLT(let_k_1,0hex7FFDE000)
+ OR BVGT(let_k_1,0hex7FFDE000)
+
+) AND ((BVLT(let_k_1,0hex7FFDD000)
+ OR BVGT(let_k_1,0hex7FFDD000)
+
+) AND (BVLT(let_k_1,0hex7FFDC000)
+ OR BVGT(let_k_1,0hex7FFDC000)
+
+)
+)
+)
+)
+)
+)) 
+
+) AND let_k_6
+) AND let_k_7
+) AND let_k_8
+) AND let_k_6
+) AND let_k_7
+) AND let_k_8
+))  

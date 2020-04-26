@@ -1,0 +1,244 @@
+#include <stdio.h>
+#include <malloc.h>
+#include "ir_printer.h"
+#include "../include/irtoir.h"
+	
+#include "HH_IR_translate_config.h"
+#include "IR_operation.h"
+#include "HH_asm_insn_2_vine_ir.h"
+
+
+IR_module_list_t  ir_module_list;
+
+
+// vine IRs for the current ASM instruction
+vine_block_t  * current_vine_block ;
+
+void (*H_term_printf)( const char * fstr, ... );
+
+
+
+/* ---------------------------------------------------- */
+asm_program_t * prog_t;
+vine_blocks_t * vine_total_blocks;
+/* ---------------------------------------------------- */
+
+
+
+
+
+int HH_translate_ASM_to_VineIR( unsigned char * inst_bytes,
+		      	      	// address_t       inst_vaddr,  // virtual address for the istruction
+				uint32_t	inst_vaddr,
+				uint32_t	inst_len
+		    	      )
+{
+    uint32_t rebased_va = 0;
+
+    // Firstly, try to locate the IR-view 
+    /* --------------------------------------------------------------------------------- */    
+    PIR_module_t module_entry = ir_module_list.head;
+    
+    while(module_entry != NULL)
+    {
+	// rebased_va = inst_vaddr - module_entry->rebase_offset;
+	/*
+	if(inst_vaddr == 0x1000e288)
+	{
+	    rebased_va = 0;
+	}// end of if( )
+	*/	
+	if( (module_entry->base_va <= inst_vaddr) &&
+	    (module_entry->base_va + module_entry->size) >= inst_vaddr
+	  )
+	{
+	    rebased_va = inst_vaddr - (module_entry->rebase_offset);
+
+	#ifndef H_TRANSLATE_SINGLE_INSN_2_IR    
+	    vine_total_blocks = module_entry->vine_total_blocks;
+	#endif
+	    goto TRANSLATING_ON;
+	}// end of if( )
+
+	module_entry = module_entry->next;
+    }// end of while{ }
+
+    return 0;
+    /* --------------------------------------------------------------------------------- */
+
+TRANSLATING_ON:    
+
+#ifdef H_TRANSLATE_SINGLE_INSN_2_IR    
+    if( (current_vine_block != NULL) &&
+	((current_vine_block->vine_ir)->size( ) != 0)
+      )
+    {
+	delete (current_vine_block->inst);
+	vx_
+	destroy_vine_block(current_vine_block);
+
+    }// end of if(current_vine_block)
+
+
+    current_vine_block = HH_asm_insn_2_vine_ir( module_entry,
+						inst_vaddr,
+					  	inst_bytes,
+				         	inst_len
+			 	              );
+    if(current_vine_block != NULL)
+    {
+        return current_vine_block->vine_ir->size( );
+    }// end of if(current_vine_block)
+#else 
+    for( int i=0; i<vine_total_blocks->size( ); i=i+1 )
+    {
+	// rebased_va = (uint32_t)( vine_total_blocks->at(i)->inst->address) + module_entry->rebase_offset;
+	// if((uint32_t)inst_vaddr == rebased_va )
+	if( rebased_va == ( (uint32_t)( vine_total_blocks->at(i)->inst->address
+				      )
+			  ) 
+	  )
+	{
+	    current_vine_block = vine_total_blocks->at(i);
+	    return current_vine_block->vine_ir->size( );
+	}// end of if( )
+    }// end of for{ }   
+#endif
+    return 0;    
+
+
+}// end of translate_ASM_to_VineIR(unsigned char * inst_bytes, unsigned int inst_vaddr)
+
+
+
+int HH_print_cur_vine_ir(  void (*term_printf)( const char * fstr, ... )
+			)
+{
+// #undef TYPECHECKING
+    H_term_printf = term_printf;
+
+    unsigned int i, j;         
+    int stmts_size = 0;
+
+    vector<Stmt *> * stmts = (current_vine_block->vine_ir);
+    stmts_size = stmts->size( );
+
+    for ( j = 0; j < stmts_size; j++ )
+    {
+	Stmt *s = stmts->at(j);
+	if(s == NULL)
+	{
+	    term_printf("NULL\n");
+	    continue;
+	}// end of if( )
+
+	H_term_printf( "stmt -- %d ----- %s \n",
+		       j,
+		       s->tostring().c_str( )
+		     );
+	
+    }// end of for{ }
+    
+    return stmts_size;
+
+}// end of print_vine_ir( vector<Stmt *> stmts )
+
+
+
+/*
+void HH_Init_Translation(char * prog_name)
+ */
+void HH_Init_Translation( char *   prog_name,
+			  uint32_t base_va,
+			  uint32_t size,
+			  void (*term_printf)( const char * fstr, ... )
+			)
+{
+    H_term_printf = term_printf;
+
+    // H_term_printf("Init translation : %s !\n", prog_name);
+    prog_t	      = disassemble_program(prog_name);	
+    string s(prog_name);
+    prog_t->name      = s;
+
+#ifdef H_TRANSLATE_SINGLE_INSN_2_IR   
+    translate_init( );
+#else 
+    vine_total_blocks = asmir_asmprogram_to_vine(prog_t); 
+#endif
+    
+    // Now link the disa-info node into list !
+    /* ---------------------------------------------------------------------------- */
+    PIR_module_t ir_module = (PIR_module_t)malloc(sizeof(IR_module_t));
+
+    ir_module->base_va		 = base_va;
+    ir_module->size		 = size;
+
+    ir_module->rebase_offset	 = ( ir_module->base_va - ( ( (prog_t->segs)->start_addr / 0x10000 
+							    ) * 0x10000 
+							  )
+				   );
+
+    ir_module->prog_t		 = prog_t;
+    ir_module->vine_total_blocks = vine_total_blocks;
+    ir_module->next		 = NULL;
+
+#ifndef H_TRANSLATE_SINGLE_INSN_2_IR
+    delete prog_t;
+#endif
+
+/*
+    term_printf( "module %s : IR_module base_va = 0x%x, real module base_va = 0x%x, Rebasing offset is 0x%x \n",
+		 prog_name,
+		 ( ( (prog_t->segs)->start_addr ) / 0x10000 
+		   ) * 0x10000 
+		 ),
+		 base_va,
+		 ir_module->rebase_offset
+	       );
+  */
+  
+    if(ir_module_list.count == 0)
+    {
+	ir_module_list.head = ir_module;
+	ir_module_list.end  = ir_module;
+    }
+    else
+    {
+	(ir_module_list.end)->next = ir_module;
+	ir_module_list.end 	   = (ir_module_list.end)->next;
+    }// end of if( )
+
+    ir_module_list.count = ir_module_list.count + 1;
+    /* ---------------------------------------------------------------------------- */
+
+
+    // printf( "vine blocks : %d\n", vine_total_blocks->size( ) );
+    // translate_init( );
+
+
+}// end of HH_Init_Translation(char * prog_name)
+
+
+void HH_Cleanup_Translation( )
+{
+    PIR_module_t entry = NULL; 
+
+    while(ir_module_list.count != 0)
+    {
+	prog_t = (ir_module_list.head)->prog_t;
+	free_asm_program(prog_t);
+
+	entry  = ir_module_list.head;
+	ir_module_list.head  = (ir_module_list.head)->next;
+	free(entry);
+
+	ir_module_list.count = ir_module_list.count - 1;
+    }// end of for{ }
+    
+}// end of HH_Cleanup_Translation( )
+
+
+
+
+

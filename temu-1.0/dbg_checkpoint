@@ -1,0 +1,7 @@
+0x7d06280b
+
+
+0x7d062b09: mov dword ptr ds[edi+0x4], eax - tainted --- 2nd ---- mem-addr=0x1a5f674
+
+
+0x7d06293e: eax's value in insn[0x7d062b09] ---- 6th 

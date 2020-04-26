@@ -1,0 +1,62 @@
+ReadFile( ) taint source introduction : H_FILE_source_1 ----- total length is 1
+ReadFile hooking : hookapi_remove_hook( ) 
+!: eip=0040171c cmp byte ptr ds[eax], 0x0 
+No concrete dst values yet !
+
+my cjmp ! : 0
+ CJMP --- eip=0040171f jz 0x3
+tainted origin for ZF bit : 0. 
+!: eip=0040171f jz 0x3 
+No concrete dst values yet !
+
+!: eip=00401a70 movsx eax, byte ptr ds[esi] 
+R_EAX =        61, size = 4
+
+!: eip=00401a79 push eax 
+[0x  12f844] =       61, size = 4
+
+!: eip=00401a01 mov al, byte ptr ss[ebp+0x8] 
+No concrete dst values yet !
+
+!: eip=00401a04 mov byte ptr ds[edx], al 
+[0x  3d5170] =       61, size = 1
+
+!: eip=00401a08 movzx eax, al 
+No concrete dst values yet !
+
+!: eip=00401a18 cmp eax, 0xff 
+No concrete dst values yet !
+
+my cjmp ! : 0
+ CJMP --- eip=00401a1e jnz 0x5
+tainted origin for ZF bit : 0. 
+!: eip=00401a1e jnz 0x5 
+No concrete dst values yet !
+
+!: eip=00403ff8 mov cl, byte ptr ds[ecx] 
+R_CL =        61, size = 1
+
+!: eip=00403ffa cmp cl, 0xa 
+No concrete dst values yet !
+
+my cjmp ! : 0
+ CJMP --- eip=00403ffd jnz 0x7
+tainted origin for ZF bit : 0. 
+!: eip=00403ffd jnz 0x7 
+No concrete dst values yet !
+
+!: eip=00404006 mov byte ptr ds[eax], cl 
+[0x  12f680] =       61, size = 1
+
+!: eip=00401064 mov al, byte ptr ss[esp+0x98] 
+R_AL =  bff71261, size = 1
+
+!: eip=0040106e cmp al, 0x61 
+No concrete dst values yet !
+
+my cjmp ! : 1
+ CJMP --- eip=00401070 jnz 0xd
+tainted origin for ZF bit : 0. 
+!: eip=00401070 jnz 0xd 
+No concrete dst values yet !
+

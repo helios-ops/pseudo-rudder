@@ -1,0 +1,217 @@
+(LET let_k_0 = BVSX(H_FILE_source_C:\Experiments\call_2_lvl_dll_1\a.txt__0,32)
+,
+let_k_1 = (let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+,
+let_k_2 = (let_k_1[31:24] @ (let_k_1[23:16] @ (let_k_1[15:8] @ let_k_1[7:0])
+)
+)
+,
+let_k_3 = BVSUB(32, 
+let_k_2, 
+0hex00000061)
+,
+let_k_4 = BVSX(H_FILE_source_C:\Experiments\call_2_lvl_dll_1\a.txt__1,32)
+,
+let_k_5 = (let_k_4[31:24] @ (let_k_4[23:16] @ (let_k_4[15:8] @ let_k_4[7:0])
+)
+)
+,
+let_k_6 = (let_k_5[31:24] @ (let_k_5[23:16] @ (let_k_5[15:8] @ let_k_5[7:0])
+)
+)
+,
+let_k_7 = BVSUB(32, 
+let_k_6, 
+0hex00000061)
+,
+let_k_8 = BVSX(H_FILE_source_C:\Experiments\call_2_lvl_dll_1\a.txt__2,32)
+,
+let_k_9 = (let_k_8[31:24] @ (let_k_8[23:16] @ (let_k_8[15:8] @ let_k_8[7:0])
+)
+)
+,
+let_k_10 = (let_k_9[31:24] @ (let_k_9[23:16] @ (let_k_9[15:8] @ let_k_9[7:0])
+)
+)
+,
+let_k_11 = BVSUB(32, 
+let_k_10, 
+0hex00000061)
+ IN 
+(((((((TRUE AND NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(BVSUB(32, 
+let_k_1, 
+0hex00000061)
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+
+) AND NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(BVSUB(32, 
+let_k_2, 
+0hex00000031)
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+
+) AND NOT((0bin0000000000000000000000000000000 @ (BVXOR(IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ let_k_3[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF,IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ (BVXOR(let_k_2,0hex00000061)
+ & BVXOR(let_k_2,let_k_3)
+)[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+ | IF(NOT(IF(let_k_3 = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF))
+[0:0][0:0] = 0bin0
+) 
+
+) AND NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(BVSUB(32, 
+let_k_6, 
+0hex00000031)
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+
+) AND NOT((0bin0000000000000000000000000000000 @ (BVXOR(IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ let_k_7[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF,IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ (BVXOR(let_k_6,0hex00000061)
+ & BVXOR(let_k_6,let_k_7)
+)[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+ | IF(NOT(IF(let_k_7 = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF))
+[0:0][0:0] = 0bin0
+) 
+
+) AND NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(BVSUB(32, 
+let_k_10, 
+0hex00000031)
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+
+) AND NOT((0bin0000000000000000000000000000000 @ (BVXOR(IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ let_k_11[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF,IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ (BVXOR(let_k_10,0hex00000061)
+ & BVXOR(let_k_10,let_k_11)
+)[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+ | IF(NOT(IF(let_k_11 = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF))
+[0:0][0:0] = 0bin0
+) 
+
+))  

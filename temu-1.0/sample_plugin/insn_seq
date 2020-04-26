@@ -1,0 +1,79 @@
+ HHui : keystroke accepted ---- dst reg : 9 
+!: eip=0040c953 cmp edx, 0xa
+!: eip=0040c956 jnz 0x32
+my cjmp ! : 0
+ CJMP --- eip=0040c956 jnz 0x32
+tainted origin for ZF bit : 0. 
+!: eip=0040c98a mov edx, dword ptr ss[ebp+0x8]
+!: eip=0040c9dc cmp edx, 0x1a
+!: eip=0040c9df jnz 0x55
+my cjmp ! : 0
+ CJMP --- eip=0040c9df jnz 0x55
+tainted origin for ZF bit : 0. 
+!: eip=0040ca36 mov eax, dword ptr ss[ebp-0x4]
+!: eip=0040ca3c cmp ecx, 0xd
+!: eip=0040ca3f jz 0x21
+my cjmp ! : 0
+ CJMP --- eip=0040ca3f jz 0x21
+tainted origin for ZF bit : 0. 
+!: eip=0040ca41 mov edx, dword ptr ss[ebp-0xc]
+!: eip=0040ca49 mov byte ptr ds[edx], cl
+!: eip=0040ca4b mov edx, dword ptr ss[ebp-0xc]
+!: eip=0040c9dc cmp edx, 0x1a
+!: eip=0040c9df jnz 0x55
+my cjmp ! : 0
+ CJMP --- eip=0040c9df jnz 0x55
+tainted origin for ZF bit : 0. 
+!: eip=0040ca36 mov eax, dword ptr ss[ebp-0x4]
+!: eip=0040ca3c cmp ecx, 0xd
+!: eip=0040ca3f jz 0x21
+my cjmp ! : 1
+ CJMP --- eip=0040ca3f jz 0x21
+tainted origin for ZF bit : 0. 
+!: eip=0040ca62 mov ecx, dword ptr ss[ebp-0x18]
+!: eip=00409157 and eax, 0xff
+!: eip=0040915c mov ecx, dword ptr ss[ebp-0x4]
+!: eip=0040418a mov eax, dword ptr ss[ebp-0x4]
+!: eip=0040418d mov esp, ebp
+!: eip=004041e0 mov ecx, dword ptr ss[ebp-0x4]
+!: eip=004041e3 push ecx
+!: eip=004041e4 call 0x4a37
+!: eip=00408c24 cmp dword ptr ds[0x425080], 0x1
+!: eip=00408c43 mov edx, dword ptr ds[0x424e70]
+!: eip=00408c4f and eax, 0x8
+!: eip=00408c52 mov dword ptr ss[ebp-0x4], eax
+!: eip=004041f5 mov esp, ebp
+!: eip=00403061 jmp 0x1b
+!: eip=0040360b jnz 0xb
+my cjmp ! : 0
+ CJMP --- eip=0040360b jnz 0xb
+tainted origin for ZF bit : 0. 
+!: eip=00403618 cmp dword ptr ss[ebp-0x1d8], 0x2b
+!: eip=0040361f jnz 0x3d
+my cjmp ! : 0
+ CJMP --- eip=0040361f jnz 0x3d
+tainted origin for ZF bit : 0. 
+!: eip=0040365e cmp dword ptr ss[ebp-0x1dc], 0x0
+!: eip=00403911 mov eax, dword ptr ds[0x424e70]
+!: eip=0040391c and ecx, 0x4
+!: eip=0040391f mov dword ptr ss[ebp-0x214], ecx
+!: eip=00403925 cmp dword ptr ss[ebp-0x214], 0x0
+!: eip=0040392c jz 0x34
+my cjmp ! : 0
+ CJMP --- eip=0040392c jz 0x34
+tainted origin for ZF bit : 0. 
+!: eip=0040392e cmp dword ptr ss[ebp-0xc], 0x6f
+!: eip=00403982 mov edx, dword ptr ss[ebp-0x40]
+!: eip=00403989 mov dword ptr ss[ebp-0x40], eax
+!: eip=0040398c cmp dword ptr ss[ebp-0x1e8], 0x0
+!: eip=00403a48 mov dword ptr ds[ecx], edx
+!: eip=00403a4a jmp 0xa
+!: eip=00401043 add ecx, 0x1
+!: eip=00401046 mov dword ptr ss[ebp-0x4], ecx
+!: eip=00401049 cmp dword ptr ss[ebp-0x4], 0x5
+!: eip=0040104d jz 0xd
+my cjmp ! : 0
+ CJMP --- eip=0040104d jz 0xd
+tainted origin for ZF bit : 0. 
+!: eip=0040104f push 0x42201c
+

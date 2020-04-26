@@ -1,0 +1,45 @@
+#ifndef H_LABEL_QUEUE_H
+
+    #define H_LABEL_QUEUE_H
+
+    #include <inttypes.h>
+
+    typedef struct label_queue_entry
+    {
+	uint32_t content;
+	int	 stmt_id;
+
+	struct label_queue_entry * next;
+    }label_queue_entry_t, *Plabel_queue_entry_t;
+
+
+    typedef struct label_queue
+    {
+	struct label_queue_entry * head;
+	struct label_queue_entry * end;
+
+	int count;
+
+    }label_queue_t, *Plabel_queue_t;
+
+
+    extern Plabel_queue_t pc_addr_map;
+    extern Plabel_queue_t label_map;
+
+
+
+    void init_label_queues( );
+
+    void delete_label_queues( );
+
+
+    void label_queue_add_entry( int       type,
+			        uint32_t  content,
+			        int	  stmt_id
+		  	      );
+
+    int fetch_stmtid_by_content( int      type,
+			         uint32_t content
+			       );
+
+#endif

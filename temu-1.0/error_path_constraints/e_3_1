@@ -1,0 +1,64 @@
+(LET let_k_0 = (0hex00000000 | (0hex000000 @ H_FILE_source_C:\Experiments\png\png\pngBar.png__28)
+),
+let_k_1 = (H_FILE_source_C:\Experiments\png\png\pngBar.png__27 @ (H_FILE_source_C:\Experiments\png\png\pngBar.png__26 @ (H_FILE_source_C:\Experiments\png\png\pngBar.png__25 @ H_FILE_source_C:\Experiments\png\png\pngBar.png__24)
+)
+)
+,
+let_k_2 = (let_k_1[31:24] @ (let_k_1[23:16] @ (let_k_1[15:8] @ let_k_1[7:0])
+)
+)
+,
+let_k_3 = ((let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+[7:0][7:0] @ (let_k_2[31:24] @ (let_k_2[23:16] @ let_k_2[15:8])
+)
+)
+,
+let_k_4 = ((let_k_3[31:24] @ (let_k_3[23:16] @ (let_k_3[15:8] @ let_k_3[7:0])
+)
+)
+ & 0hex000000FF),
+let_k_5 = (let_k_4[31:24] @ (let_k_4[23:16] @ (let_k_4[15:8] @ let_k_4[7:0])
+)
+)
+,
+let_k_6 = ((let_k_5[31:24] @ (let_k_5[23:16] @ (let_k_5[15:8] @ let_k_5[7:0])
+)
+)
+ & 0hex000000FF),
+let_k_7 = BVPLUS(32, 
+((let_k_6[31:24] @ (let_k_6[23:16] @ (let_k_6[15:8] @ let_k_6[7:0])
+)
+)
+ @ 0bin00)
+[31:0], 
+0hex1000C21C)
+ IN 
+(((((BVLT(let_k_7,0hex00129000)
+ OR BVGT(let_k_7,0hex00130000)
+
+) AND (BVLT(let_k_7,0hex0106F000)
+ OR BVGT(let_k_7,0hex01070000)
+
+)
+) AND (BVLT(let_k_7,0hex0116F000)
+ OR BVGT(let_k_7,0hex01170000)
+
+)
+) AND (BVLT(let_k_7,0hex0126E000)
+ OR BVGT(let_k_7,0hex01270000)
+
+)
+) AND (BVLT(let_k_7,0hex5ADC0000)
+ OR BVGT(let_k_7,0hex5ADF6FFF)
+
+)
+))  hex5ADF6FFF)
+
+) AND (BVLT(let_k_7,0hex20000000)
+ OR BVGT(let_k_7,0hex20548FFF)
+
+)
+)
+))  

@@ -1,0 +1,60 @@
+#!/bin/bash
+#NOTE : OPERATION under vine/libasmir/src
+rm libasmir/src/ir/IR_SymEXE.so
+
+
+cd libasmir/src
+
+g++ -DHAVE_CONFIG_H -I. -I../../libasmir -I../../VEX//pub -I./include -fPIC -g -O2 -MT exp.o -MD -MP -MF .deps/exp.Tpo -c -o exp.o `test -f './ir/exp.cpp' || echo './'`./ir/exp.cpp
+
+g++ -DHAVE_CONFIG_H -I. -I../../libasmir -I../../VEX//pub -I./include -fPIC -g -O2 -MT stmt.o -MD -MP -MF .deps/stmt.Tpo -c -o stmt.o `test -f './ir/stmt.cpp' || echo './'`./ir/stmt.cpp
+
+# rebuild libasmir.a
+ar cru libasmir.a debug.o objdump.o asm_program.o vexmem.o irtoir.o irtoir-i386.o irtoir-arm.o irtoir_c.o vexir.o gen_thunks.o stmt.o stmt_c.o exp.o exp_c.o translate.o 
+ranlib libasmir.a
+rm ir/libasmir.a
+cp libasmir.a ir/
+
+cd ir
+rm -f GetTemuData.o
+rm -f sym_addr_resolve.o
+rm -f H_STP_stub.o
+rm -f stp_variables.o
+rm -f dbg_util.o
+
+g++ -I.. -I../include -g -c GetTemuData.o GetTemuData.cpp
+g++ -I../include -g -c sym_addr_resolve.o sym_addr_resolve.cpp
+g++ -I../include -g -c H_STP_stub.o H_STP_stub.cpp
+g++ -I../include -g -c stp_variables.o stp_variables.cpp
+
+g++ -I../include -g -c dbg_util.o dbg_util.cpp
+
+cd ..
+rm SymExe.o
+g++ -DHAVE_CONFIG_H -I. -I../../libasmir -I../../VEX//pub -I./include -fPIC -g -O2 -c -o SymExe.o ./ir/SymExe.cpp
+
+cp SymExe.o ir/
+
+
+g++ -DHAVE_CONFIG_H -I. -I../../libasmir -I../../VEX//pub -I./include -fPIC -g -O2 i386_reg_init.o  -c -o i386_reg_init.o `test -f './ir/i386_reg_init.cpp' || echo './'`./ir/i386_reg_init.cpp
+
+
+# g++ -I.. -I../include  -c sym_addr_resolve.o sym_addr_resolve.cpp
+
+
+
+cp i386_reg_init.o ir/
+
+
+
+cd ir
+# Final making the IR_SymExe.so
+g++ HH_asm_insn_2_vine_ir.cpp IR_operation.cpp label_queue.cpp record2file.cpp H_STP_stub.o stp_variables.o GetTemuData.o SymExe.o ../i386_reg_init.o sym_addr_resolve.o -I../.. -I../../apps -I../include -I../../../VEX//pub -g -O2 -L. -L../../src -L../../../VEX/ -g -O2 -L../../src -L../../../VEX/ -shared -fPIC -o IR_SymEXE.so -lasmir -lvex -lbfd -liberty -lopcodes -liberty -Xlinker -rpath ./
+
+ls -al dbg_util.o
+ls -al GetTemuData.o
+ls -al sym_addr_resolve.o
+ls -al H_STP_stub.o
+ls -al stp_variables.o
+
+ls -al IR_SymEXE.so

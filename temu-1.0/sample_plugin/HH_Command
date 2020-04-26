@@ -1,0 +1,73 @@
+/* all compilation units */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+gcc -Wall -O4 -g -fPIC -MMD -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o main.o main.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -std=c99 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o insn_effect_restore.o insn_effect_restore.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/
+Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o H_STP_stub.o H_STP_stub.c
+
+
+
+gcc -Wall -O4 -g -fPIC -MMD -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o proc_notify.o proc_notify.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -std=c99 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o module_notify.o module_notify.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -std=c99 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o H_mem_map.o H_mem_map.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o Reg_convert.o Reg_convert.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -std=c99 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o eflag_tc_monitor.o eflag_tc_monitor.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -std=c99 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o stp_variables.o stp_variables.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -std=c99 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o branch_update_VM.o branch_update_VM.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -std=c99 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o branch_save.o branch_save.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -std=c99 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o formula_solve.o formula_solve.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -std=c99 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o HVM_state.o HVM_state.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -std=c99 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o jcc_pred_branch.o jcc_pred_branch.c
+
+
+gcc -Wall -O4 -g -fPIC -MMD -std=c99 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/include -I. -I.. -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/i386-softmmu -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/target-i386 -I/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/fpu -D_GNU_SOURCE -c -o HH_encap_taintcheck.o HH_encap_taintcheck.c
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* all compilation units */
+
+
+
+
+g++ -g -Wl -shared  main.o branch_save.o HH_encap_taintcheck.o stp_variables.o jcc_pred_branch.o formula_solve.o branch_update_VM.o HVM_state.o H_mem_map.o H_STP_stub.o eflag_tc_monitor.o network.o module_notify.o proc_notify.o insn_effect_restore.o Reg_convert.o ../shared/procmod.o ../shared/read_linux.o ../shared/hookapi.o ../shared/hooks/function_map.o ../shared/reduce_taint.o -o plugin.so  -L. -lstp -lm -L/home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/shared/xed2/xed2-ia32/lib -lxed
+
+
+
+// qemu rebuild
+/* --------------------------------------------------------------------------------------------------------------- */
+g++  -g -export-dynamic -o qemu vl.o osdep.o monitor.o pci.o loader.o isa_mmio.o block-raw-posix.o lsi53c895a.o usb-ohci.o eeprom93xx.o eepro100.o ne2000.o pcnet.o rtl8139.o ide.o pckbd.o ps2.o vga.o sb16.o es1370.o dma.o fdc.o mc146818rtc.o serial.o i8259.o i8254.o pcspk.o pc.o cirrus_vga.o apic.o parallel.o acpi.o piix_pci.o usb-uhci.o vmmouse.o vmport.o vmware_vga.o gdbstub.o ../libqemu_common.a libqemu.a  -lm -lz -lgnutls   -L/usr/lib -lSDL  -lrt -lpthread -lutil -L. -lstp
+
+cp qemu ../sample_plugin/temu
+/* --------------------------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+

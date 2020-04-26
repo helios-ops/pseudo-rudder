@@ -1,0 +1,410 @@
+(qemu) enable_emulation
+Emulation is now enabled
+(qemu) Load desired main module !
+page table : 841ae008
+Module readfile_add1.exe loaded in our monitored process's name space !
+Module Added!
+Hooking HHui_ReadFile_call( ) ---- eip -   40107c !
+ReadFile( ) cur eip = 0040107c
+ReadFile( ) input length = 1
+ReadFile( ) taint source introduction : H_FILE_source_1 ----- total length is 1
+ReadFile hooking : hookapi_remove_hook( ) 
+readfile_add1.exe!: eip=00401096 movsx ecx, byte ptr ss[ebp-0x48c] 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  401096 ---------- Stmts num = 12
+stmt -- 0 ----- label pc_0x401096: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- var T_32t3:reg32_t; 
+stmt -- 5 ----- var T_8t4:reg8_t; 
+stmt -- 6 ----- T_32t2:reg32_t = R_EBP:reg32_t; 
+stmt -- 7 ----- T_32t1:reg32_t = (T_32t2:reg32_t+4294966132:reg32_t); 
+stmt -- 8 ----- T_8t4:reg8_t = mem[T_32t1:reg32_t]; 
+stmt -- 9 ----- T_32t3:reg32_t = cast(T_8t4:reg8_t)S:reg32_t; 
+stmt -- 10 ----- R_ECX:reg32_t = T_32t3:reg32_t; 
+stmt -- 11 ----- jmp(name(pc_0x40109d)); 
+IR Block found for address 4198550
+
+---------------------------------------------------------------------------
+R_ECX =  7c801898, size = 4
+
+readfile_add1.exe!: eip=0040109d add ecx, 0x1 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  40109d ---------- Stmts num = 25
+stmt -- 0 ----- label pc_0x40109d: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- T_32t2:reg32_t = R_ECX:reg32_t; 
+stmt -- 5 ----- T_32t0:reg32_t = (T_32t2:reg32_t+1:reg32_t); 
+stmt -- 6 ----- R_CC_OP:reg32_t = 3:reg32_t; 
+stmt -- 7 ----- R_CC_DEP1:reg32_t = T_32t2:reg32_t; 
+stmt -- 8 ----- R_CC_DEP2:reg32_t = 1:reg32_t; 
+stmt -- 9 ----- R_CC_NDEP:reg32_t = 0:reg32_t; 
+stmt -- 10 ----- //eflags thunk: add 
+stmt -- 11 ----- var T_9:reg32_t; 
+stmt -- 12 ----- T_9:reg32_t = (T_32t2:reg32_t+1:reg32_t); 
+stmt -- 13 ----- R_CF:reg1_t = (T_9:reg32_t<T_32t2:reg32_t); 
+stmt -- 14 ----- var T_10:reg8_t; 
+stmt -- 15 ----- T_10:reg8_t = cast(T_9:reg32_t)L:reg8_t; 
+stmt -- 16 ----- R_PF:reg1_t = (!cast(((((T_10:reg8_t>>7:reg32_t)^(T_10:reg8_t>>6:reg32_t))^((T_10:reg8_t>>5:reg32_t)^(T_10:reg8_t>>4:reg32_t)))^(((T_10:reg8_t>>3:reg32_t)^(T_10:reg8_t>>2:reg32_t))^((T_10:reg8_t>>1:reg32_t)^T_10:reg8_t))))L:reg1_t); 
+stmt -- 17 ----- R_AF:reg1_t = (1:reg32_t==(16:reg32_t&(T_9:reg32_t^(T_32t2:reg32_t^1:reg32_t)))); 
+stmt -- 18 ----- R_ZF:reg1_t = (T_9:reg32_t==0:reg32_t); 
+stmt -- 19 ----- R_SF:reg1_t = (1:reg32_t==(1:reg32_t&(T_9:reg32_t>>31:reg32_t))); 
+stmt -- 20 ----- R_OF:reg1_t = (1:reg32_t==(1:reg32_t&(((T_32t2:reg32_t^(1:reg32_t^4294967295:reg32_t))&(T_32t2:reg32_t^T_9:reg32_t))>>31:reg32_t))); 
+stmt -- 21 ----- EFLAGS:reg32_t = ((EFLAGS:reg32_t&(4294967294:reg32_t&4294967291:reg32_t))&((4294967279:reg32_t&(4294967231:reg32_t&4294967167:reg32_t))&4294965247:reg32_t)); 
+stmt -- 22 ----- EFLAGS:reg32_t = ((EFLAGS:reg32_t|((cast(R_CF:reg1_t)U:reg32_t<<0:reg32_t)|(cast(R_PF:reg1_t)U:reg32_t<<2:reg32_t)))|(((cast(R_AF:reg1_t)U:reg32_t<<4:reg32_t)|((cast(R_ZF:reg1_t)U:reg32_t<<6:reg32_t)|(cast(R_SF:reg1_t)U:reg32_t<<7:reg32_t)))|(cast(R_OF:reg1_t)U:reg32_t<<11:reg32_t))); 
+stmt -- 23 ----- R_ECX:reg32_t = T_32t0:reg32_t; 
+stmt -- 24 ----- jmp(name(pc_0x4010a0)); 
+IR Block found for address 4198557
+
+---------------------------------------------------------------------------
+R_ECX =        61, size = 4
+
+readfile_add1.exe!: eip=004010a0 mov byte ptr ss[ebp-0x48c], cl 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  4010a0 ---------- Stmts num = 10
+stmt -- 0 ----- label pc_0x4010a0: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- var T_8t3:reg8_t; 
+stmt -- 5 ----- T_32t2:reg32_t = R_EBP:reg32_t; 
+stmt -- 6 ----- T_32t1:reg32_t = (T_32t2:reg32_t+4294966132:reg32_t); 
+stmt -- 7 ----- T_8t3:reg8_t = cast(R_ECX:reg32_t)L:reg8_t; 
+stmt -- 8 ----- mem[T_32t1:reg32_t] = T_8t3:reg8_t; 
+stmt -- 9 ----- jmp(name(pc_0x4010a6)); 
+IR Block found for address 4198560
+
+---------------------------------------------------------------------------
+[0x  12faf4] = bf940061, size = 1
+
+readfile_add1.exe!: eip=004010ab add ebx, dword ptr ss[ebp-0x48c] 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  4010ab ---------- Stmts num = 31
+stmt -- 0 ----- label pc_0x4010ab: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- var T_32t3:reg32_t; 
+stmt -- 5 ----- var T_32t4:reg32_t; 
+stmt -- 6 ----- var T_32t5:reg32_t; 
+stmt -- 7 ----- T_32t5:reg32_t = R_EBP:reg32_t; 
+stmt -- 8 ----- T_32t4:reg32_t = (T_32t5:reg32_t+4294966132:reg32_t); 
+stmt -- 9 ----- T_32t2:reg32_t = R_EBX:reg32_t; 
+stmt -- 10 ----- T_32t1:reg32_t = mem[T_32t4:reg32_t]; 
+stmt -- 11 ----- T_32t0:reg32_t = (T_32t2:reg32_t+T_32t1:reg32_t); 
+stmt -- 12 ----- R_CC_OP:reg32_t = 3:reg32_t; 
+stmt -- 13 ----- R_CC_DEP1:reg32_t = T_32t2:reg32_t; 
+stmt -- 14 ----- R_CC_DEP2:reg32_t = T_32t1:reg32_t; 
+stmt -- 15 ----- R_CC_NDEP:reg32_t = 0:reg32_t; 
+stmt -- 16 ----- //eflags thunk: add 
+stmt -- 17 ----- var T_11:reg32_t; 
+stmt -- 18 ----- T_11:reg32_t = (T_32t2:reg32_t+T_32t1:reg32_t); 
+stmt -- 19 ----- R_CF:reg1_t = (T_11:reg32_t<T_32t2:reg32_t); 
+stmt -- 20 ----- var T_12:reg8_t; 
+stmt -- 21 ----- T_12:reg8_t = cast(T_11:reg32_t)L:reg8_t; 
+stmt -- 22 ----- R_PF:reg1_t = (!cast(((((T_12:reg8_t>>7:reg32_t)^(T_12:reg8_t>>6:reg32_t))^((T_12:reg8_t>>5:reg32_t)^(T_12:reg8_t>>4:reg32_t)))^(((T_12:reg8_t>>3:reg32_t)^(T_12:reg8_t>>2:reg32_t))^((T_12:reg8_t>>1:reg32_t)^T_12:reg8_t))))L:reg1_t); 
+stmt -- 23 ----- R_AF:reg1_t = (1:reg32_t==(16:reg32_t&(T_11:reg32_t^(T_32t2:reg32_t^T_32t1:reg32_t)))); 
+stmt -- 24 ----- R_ZF:reg1_t = (T_11:reg32_t==0:reg32_t); 
+stmt -- 25 ----- R_SF:reg1_t = (1:reg32_t==(1:reg32_t&(T_11:reg32_t>>31:reg32_t))); 
+stmt -- 26 ----- R_OF:reg1_t = (1:reg32_t==(1:reg32_t&(((T_32t2:reg32_t^(T_32t1:reg32_t^4294967295:reg32_t))&(T_32t2:reg32_t^T_11:reg32_t))>>31:reg32_t))); 
+stmt -- 27 ----- EFLAGS:reg32_t = ((EFLAGS:reg32_t&(4294967294:reg32_t&4294967291:reg32_t))&((4294967279:reg32_t&(4294967231:reg32_t&4294967167:reg32_t))&4294965247:reg32_t)); 
+stmt -- 28 ----- EFLAGS:reg32_t = ((EFLAGS:reg32_t|((cast(R_CF:reg1_t)U:reg32_t<<0:reg32_t)|(cast(R_PF:reg1_t)U:reg32_t<<2:reg32_t)))|(((cast(R_AF:reg1_t)U:reg32_t<<4:reg32_t)|((cast(R_ZF:reg1_t)U:reg32_t<<6:reg32_t)|(cast(R_SF:reg1_t)U:reg32_t<<7:reg32_t)))|(cast(R_OF:reg1_t)U:reg32_t<<11:reg32_t))); 
+stmt -- 29 ----- R_EBX:reg32_t = T_32t0:reg32_t; 
+stmt -- 30 ----- jmp(name(pc_0x4010b1)); 
+IR Block found for address 4198571
+
+---------------------------------------------------------------------------
+R_EBX =         1, size = 4
+
+readfile_add1.exe!: eip=004010b1 movsx edx, byte ptr ss[ebp-0x48c] 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  4010b1 ---------- Stmts num = 12
+stmt -- 0 ----- label pc_0x4010b1: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- var T_32t3:reg32_t; 
+stmt -- 5 ----- var T_8t4:reg8_t; 
+stmt -- 6 ----- T_32t2:reg32_t = R_EBP:reg32_t; 
+stmt -- 7 ----- T_32t1:reg32_t = (T_32t2:reg32_t+4294966132:reg32_t); 
+stmt -- 8 ----- T_8t4:reg8_t = mem[T_32t1:reg32_t]; 
+stmt -- 9 ----- T_32t3:reg32_t = cast(T_8t4:reg8_t)S:reg32_t; 
+stmt -- 10 ----- R_EDX:reg32_t = T_32t3:reg32_t; 
+stmt -- 11 ----- jmp(name(pc_0x4010b8)); 
+IR Block found for address 4198577
+
+---------------------------------------------------------------------------
+R_EDX =  7c92eb94, size = 4
+
+readfile_add1.exe!: eip=004010b8 cmp edx, 0x62 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  4010b8 ---------- Stmts num = 24
+stmt -- 0 ----- label pc_0x4010b8: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- T_32t2:reg32_t = R_EDX:reg32_t; 
+stmt -- 5 ----- //NoOp 
+stmt -- 6 ----- R_CC_OP:reg32_t = 6:reg32_t; 
+stmt -- 7 ----- R_CC_DEP1:reg32_t = T_32t2:reg32_t; 
+stmt -- 8 ----- R_CC_DEP2:reg32_t = 98:reg32_t; 
+stmt -- 9 ----- R_CC_NDEP:reg32_t = 0:reg32_t; 
+stmt -- 10 ----- //eflags thunk: sub 
+stmt -- 11 ----- var T_13:reg32_t; 
+stmt -- 12 ----- T_13:reg32_t = (T_32t2:reg32_t-98:reg32_t); 
+stmt -- 13 ----- R_CF:reg1_t = (T_32t2:reg32_t<98:reg32_t); 
+stmt -- 14 ----- var T_14:reg8_t; 
+stmt -- 15 ----- T_14:reg8_t = cast(T_13:reg32_t)L:reg8_t; 
+stmt -- 16 ----- R_PF:reg1_t = (!cast(((((T_14:reg8_t>>7:reg32_t)^(T_14:reg8_t>>6:reg32_t))^((T_14:reg8_t>>5:reg32_t)^(T_14:reg8_t>>4:reg32_t)))^(((T_14:reg8_t>>3:reg32_t)^(T_14:reg8_t>>2:reg32_t))^((T_14:reg8_t>>1:reg32_t)^T_14:reg8_t))))L:reg1_t); 
+stmt -- 17 ----- R_AF:reg1_t = (1:reg32_t==(16:reg32_t&(T_13:reg32_t^(T_32t2:reg32_t^98:reg32_t)))); 
+stmt -- 18 ----- R_ZF:reg1_t = (T_13:reg32_t==0:reg32_t); 
+stmt -- 19 ----- R_SF:reg1_t = (1:reg32_t==(1:reg32_t&(T_13:reg32_t>>31:reg32_t))); 
+stmt -- 20 ----- R_OF:reg1_t = (1:reg32_t==(1:reg32_t&(((T_32t2:reg32_t^98:reg32_t)&(T_32t2:reg32_t^T_13:reg32_t))>>31:reg32_t))); 
+stmt -- 21 ----- EFLAGS:reg32_t = ((EFLAGS:reg32_t&(4294967294:reg32_t&4294967291:reg32_t))&((4294967279:reg32_t&(4294967231:reg32_t&4294967167:reg32_t))&4294965247:reg32_t)); 
+stmt -- 22 ----- EFLAGS:reg32_t = ((EFLAGS:reg32_t|((cast(R_CF:reg1_t)U:reg32_t<<0:reg32_t)|(cast(R_PF:reg1_t)U:reg32_t<<2:reg32_t)))|(((cast(R_AF:reg1_t)U:reg32_t<<4:reg32_t)|((cast(R_ZF:reg1_t)U:reg32_t<<6:reg32_t)|(cast(R_SF:reg1_t)U:reg32_t<<7:reg32_t)))|(cast(R_OF:reg1_t)U:reg32_t<<11:reg32_t))); 
+stmt -- 23 ----- jmp(name(pc_0x4010bb)); 
+IR Block found for address 4198584
+
+---------------------------------------------------------------------------
+No concrete dst values yet !
+
+tainted origin for ZF bit : 0. 
+readfile_add1.exe!: eip=004010bb jnz 0xd 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  4010bb ---------- Stmts num = 16
+stmt -- 0 ----- label pc_0x4010bb: 
+stmt -- 1 ----- var T_1t0:reg1_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- var T_32t3:reg32_t; 
+stmt -- 5 ----- var T_32t4:reg32_t; 
+stmt -- 6 ----- var T_32t5:reg32_t; 
+stmt -- 7 ----- T_32t1:reg32_t = R_CC_OP:reg32_t; 
+stmt -- 8 ----- T_32t2:reg32_t = R_CC_DEP1:reg32_t; 
+stmt -- 9 ----- T_32t3:reg32_t = R_CC_DEP2:reg32_t; 
+stmt -- 10 ----- T_32t4:reg32_t = R_CC_NDEP:reg32_t; 
+stmt -- 11 ----- T_32t5:reg32_t = cast(R_ZF:reg1_t)U:reg32_t; 
+stmt -- 12 ----- T_1t0:reg1_t = cast(T_32t5:reg32_t)L:reg1_t; 
+stmt -- 13 ----- cjmp(T_1t0:reg1_t,name(pc_0x4010bd),name(L_2)); 
+stmt -- 14 ----- label L_2: 
+stmt -- 15 ----- jmp(name(pc_0x4010ca)); 
+IR Block found for address 4198587
+
+---------------------------------------------------------------------------
+No concrete dst values yet !
+
+readfile_add1.exe!: eip=00401146 push ebx 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  401146 ---------- Stmts num = 11
+stmt -- 0 ----- label pc_0x401146: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- var T_32t3:reg32_t; 
+stmt -- 5 ----- T_32t0:reg32_t = R_EBX:reg32_t; 
+stmt -- 6 ----- T_32t3:reg32_t = R_ESP:reg32_t; 
+stmt -- 7 ----- T_32t2:reg32_t = (T_32t3:reg32_t-4:reg32_t); 
+stmt -- 8 ----- R_ESP:reg32_t = T_32t2:reg32_t; 
+stmt -- 9 ----- mem[T_32t2:reg32_t] = T_32t0:reg32_t; 
+stmt -- 10 ----- jmp(name(pc_0x401147)); 
+IR Block found for address 4198726
+
+---------------------------------------------------------------------------
+[0x  12fa88] = 7c801898, size = 4
+R_ESP =    12fa8c, size = 4
+
+readfile_add1.exe!: eip=00401396 push ebx 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  401396 ---------- Stmts num = 11
+stmt -- 0 ----- label pc_0x401396: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- var T_32t3:reg32_t; 
+stmt -- 5 ----- T_32t0:reg32_t = R_EBX:reg32_t; 
+stmt -- 6 ----- T_32t3:reg32_t = R_ESP:reg32_t; 
+stmt -- 7 ----- T_32t2:reg32_t = (T_32t3:reg32_t-4:reg32_t); 
+stmt -- 8 ----- R_ESP:reg32_t = T_32t2:reg32_t; 
+stmt -- 9 ----- mem[T_32t2:reg32_t] = T_32t0:reg32_t; 
+stmt -- 10 ----- jmp(name(pc_0x401397)); 
+IR Block found for address 4199318
+
+---------------------------------------------------------------------------
+[0x  12fa68] = cccccccc, size = 4
+R_ESP =    12fa6c, size = 4
+
+readfile_add1.exe!: eip=00404326 push ebx 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  404326 ---------- Stmts num = 11
+stmt -- 0 ----- label pc_0x404326: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- var T_32t3:reg32_t; 
+stmt -- 5 ----- T_32t0:reg32_t = R_EBX:reg32_t; 
+stmt -- 6 ----- T_32t3:reg32_t = R_ESP:reg32_t; 
+stmt -- 7 ----- T_32t2:reg32_t = (T_32t3:reg32_t-4:reg32_t); 
+stmt -- 8 ----- R_ESP:reg32_t = T_32t2:reg32_t; 
+stmt -- 9 ----- mem[T_32t2:reg32_t] = T_32t0:reg32_t; 
+stmt -- 10 ----- jmp(name(pc_0x404327)); 
+IR Block found for address 4211494
+
+---------------------------------------------------------------------------
+[0x  12f9fc] = cccccccc, size = 4
+R_ESP =    12fa00, size = 4
+
+readfile_add1.exe!: eip=0040462e pop ebx 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  40462e ---------- Stmts num = 10
+stmt -- 0 ----- label pc_0x40462e: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- T_32t1:reg32_t = R_ESP:reg32_t; 
+stmt -- 5 ----- T_32t0:reg32_t = mem[T_32t1:reg32_t]; 
+stmt -- 6 ----- T_32t2:reg32_t = (T_32t1:reg32_t+4:reg32_t); 
+stmt -- 7 ----- R_ESP:reg32_t = T_32t2:reg32_t; 
+stmt -- 8 ----- R_EBX:reg32_t = T_32t0:reg32_t; 
+stmt -- 9 ----- jmp(name(pc_0x40462f)); 
+IR Block found for address 4212270
+
+---------------------------------------------------------------------------
+R_ESP =    12f9fc, size = 4
+R_EBX =  cccccc63, size = 4
+
+readfile_add1.exe!: eip=004014e2 pop ebx 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  4014e2 ---------- Stmts num = 10
+stmt -- 0 ----- label pc_0x4014e2: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- T_32t1:reg32_t = R_ESP:reg32_t; 
+stmt -- 5 ----- T_32t0:reg32_t = mem[T_32t1:reg32_t]; 
+stmt -- 6 ----- T_32t2:reg32_t = (T_32t1:reg32_t+4:reg32_t); 
+stmt -- 7 ----- R_ESP:reg32_t = T_32t2:reg32_t; 
+stmt -- 8 ----- R_EBX:reg32_t = T_32t0:reg32_t; 
+stmt -- 9 ----- jmp(name(pc_0x4014e3)); 
+IR Block found for address 4199650
+
+---------------------------------------------------------------------------
+R_ESP =    12fa68, size = 4
+R_EBX =  cccccc63, size = 4
+
+readfile_add1.exe!: eip=004015b9 push ebx 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  4015b9 ---------- Stmts num = 11
+stmt -- 0 ----- label pc_0x4015b9: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- var T_32t3:reg32_t; 
+stmt -- 5 ----- T_32t0:reg32_t = R_EBX:reg32_t; 
+stmt -- 6 ----- T_32t3:reg32_t = R_ESP:reg32_t; 
+stmt -- 7 ----- T_32t2:reg32_t = (T_32t3:reg32_t-4:reg32_t); 
+stmt -- 8 ----- R_ESP:reg32_t = T_32t2:reg32_t; 
+stmt -- 9 ----- mem[T_32t2:reg32_t] = T_32t0:reg32_t; 
+stmt -- 10 ----- jmp(name(pc_0x4015ba)); 
+IR Block found for address 4199865
+
+---------------------------------------------------------------------------
+[0x  12f7c0] =        0, size = 4
+R_ESP =    12f7c4, size = 4
+
+readfile_add1.exe!: eip=004021cf pop ebx 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  4021cf ---------- Stmts num = 10
+stmt -- 0 ----- label pc_0x4021cf: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- T_32t1:reg32_t = R_ESP:reg32_t; 
+stmt -- 5 ----- T_32t0:reg32_t = mem[T_32t1:reg32_t]; 
+stmt -- 6 ----- T_32t2:reg32_t = (T_32t1:reg32_t+4:reg32_t); 
+stmt -- 7 ----- R_ESP:reg32_t = T_32t2:reg32_t; 
+stmt -- 8 ----- R_EBX:reg32_t = T_32t0:reg32_t; 
+stmt -- 9 ----- jmp(name(pc_0x4021d0)); 
+IR Block found for address 4202959
+
+---------------------------------------------------------------------------
+R_ESP =    12f7c0, size = 4
+R_EBX =  cccccc63, size = 4
+
+readfile_add1.exe!: eip=004014f4 push ebx 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  4014f4 ---------- Stmts num = 11
+stmt -- 0 ----- label pc_0x4014f4: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- var T_32t3:reg32_t; 
+stmt -- 5 ----- T_32t0:reg32_t = R_EBX:reg32_t; 
+stmt -- 6 ----- T_32t3:reg32_t = R_ESP:reg32_t; 
+stmt -- 7 ----- T_32t2:reg32_t = (T_32t3:reg32_t-4:reg32_t); 
+stmt -- 8 ----- R_ESP:reg32_t = T_32t2:reg32_t; 
+stmt -- 9 ----- mem[T_32t2:reg32_t] = T_32t0:reg32_t; 
+stmt -- 10 ----- jmp(name(pc_0x4014f5)); 
+IR Block found for address 4199668
+
+---------------------------------------------------------------------------
+[0x  12fa68] = cccccc63, size = 4
+R_ESP =    12fa6c, size = 4
+
+readfile_add1.exe!: eip=0040159c pop ebx 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  40159c ---------- Stmts num = 10
+stmt -- 0 ----- label pc_0x40159c: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- T_32t1:reg32_t = R_ESP:reg32_t; 
+stmt -- 5 ----- T_32t0:reg32_t = mem[T_32t1:reg32_t]; 
+stmt -- 6 ----- T_32t2:reg32_t = (T_32t1:reg32_t+4:reg32_t); 
+stmt -- 7 ----- R_ESP:reg32_t = T_32t2:reg32_t; 
+stmt -- 8 ----- R_EBX:reg32_t = T_32t0:reg32_t; 
+stmt -- 9 ----- jmp(name(pc_0x40159d)); 
+IR Block found for address 4199836
+
+---------------------------------------------------------------------------
+R_ESP =    12fa68, size = 4
+R_EBX =  cccccc63, size = 4
+
+readfile_add1.exe!: eip=004011b7 pop ebx 
+
+----------------------------- Vine IR lifting -----------------------------
+Address 0x  4011b7 ---------- Stmts num = 10
+stmt -- 0 ----- label pc_0x4011b7: 
+stmt -- 1 ----- var T_32t0:reg32_t; 
+stmt -- 2 ----- var T_32t1:reg32_t; 
+stmt -- 3 ----- var T_32t2:reg32_t; 
+stmt -- 4 ----- T_32t1:reg32_t = R_ESP:reg32_t; 
+stmt -- 5 ----- T_32t0:reg32_t = mem[T_32t1:reg32_t]; 
+stmt -- 6 ----- T_32t2:reg32_t = (T_32t1:reg32_t+4:reg32_t); 
+stmt -- 7 ----- R_ESP:reg32_t = T_32t2:reg32_t; 
+stmt -- 8 ----- R_EBX:reg32_t = T_32t0:reg32_t; 
+stmt -- 9 ----- jmp(name(pc_0x4011b8)); 
+IR Block found for address 4198839
+
+---------------------------------------------------------------------------
+R_ESP =    12fa88, size = 4
+R_EBX =  cccccc63, size = 4
+

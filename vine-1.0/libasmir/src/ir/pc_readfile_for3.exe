@@ -1,0 +1,85 @@
+/* path constraint for readfile_for3.exe */
+
+
+unsigned casting finished !
+a final path constraint is 
+
+
+( LET let_k_0 = BVSX( H_FILE_source_1_0,
+		      32
+		    )
+      ,
+      let_k_1 = BVSX( H_FILE_source_1_1,
+		      32
+		    )
+      ,
+      let_k_2 = BVSX( H_FILE_source_1_2,
+		      32
+		    )
+      ,
+      let_k_3 = ( 0bin0000000000000000000000000000000 @ 
+		  IF( BVSUB( 32, 
+			     ( let_k_0[31:24] @ 
+			       ( let_k_0[23:16] @ 
+				 ( let_k_0[15:8] @ 
+				   let_k_0[7:0]
+				 )
+			       )
+			     ), 
+			     0hex00000061
+			   )
+		      = 0hex00000000
+		    )
+		  THEN 0bin1
+		  ELSE 0bin0
+		  ENDIF
+		)
+		[1:0][0:0] = 0bin0
+  IN 
+
+     (/*------------------------------------------------------- */ 
+       (
+	 ( ( TRUE AND 
+	     let_k_3
+	   ) AND 
+	   ( 0bin0000000000000000000000000000000 @ 
+	     IF( BVSUB( 32, 
+		        ( let_k_1[31:24] @ 
+			  ( let_k_1[23:16] @ 
+			    ( let_k_1[15:8] @ 
+			      let_k_1[7:0]
+			    )
+			  )
+		        ), 
+		        0hex00000061
+		      )
+		 = 0hex00000000
+	       )
+	     THEN 0bin1
+	     ELSE 0bin0
+	     ENDIF
+	   )
+	   [1:0][0:0] = 0bin0
+	) AND 
+	( 0bin0000000000000000000000000000000 @ 
+	  IF( BVSUB( 32, 
+		     ( let_k_2[31:24] @ 
+		       ( let_k_2[23:16] @ 
+		         ( let_k_2[15:8] @ 
+			   let_k_2[7:0]
+		         )
+		       )
+		     ), 
+		     0hex00000061
+		   )
+	      = 0hex00000000
+	    )
+	  THEN 0bin1
+	  ELSE 0bin0
+	  ENDIF
+	)
+	[1:0][0:0] = 0bin0
+      ) AND 
+      let_k_3
+    )/*------------------------------------------------------- */
+)  

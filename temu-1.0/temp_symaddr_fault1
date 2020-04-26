@@ -1,0 +1,231 @@
+An OUT-OF-RANGE safety-violation expression : (LET let_k_0 = BVSX(H_FILE_source_a__0,32)
+,
+let_k_1 = BVPLUS(32, 
+BVPLUS(32, 
+(let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+, 
+0hex0012FF80)
+, 
+0hexFFFFFB74)
+,
+let_k_2 = (BVLT(let_k_1,0hex003AD000)
+ OR BVGT(let_k_1,0hex003B0000)
+
+),
+let_k_3 = BVGT(let_k_1,0hex003B0000)
+ IN 
+((((BVLT(let_k_1,0hex0012E000)
+ OR BVGT(let_k_1,0hex00130000)
+
+) AND let_k_2
+) AND let_k_2
+) AND (((BVLT(let_k_1,0hex00400000)
+ OR BVGT(let_k_1,0hex00427000)
+
+) AND (((BVLT(let_k_1,0hex00140000)
+ OR BVGT(let_k_1,0hex00240000)
+
+) AND (BVLT(let_k_1,0hex00130000)
+ OR BVGT(let_k_1,0hex00133000)
+
+)
+) AND (((BVLT(let_k_1,0hex00250000)
+ OR BVGT(let_k_1,0hex00260000)
+
+) AND (BVLT(let_k_1,0hex00240000)
+ OR BVGT(let_k_1,0hex00250000)
+
+)
+) AND (((BVLT(let_k_1,0hex00280000)
+ OR BVGT(let_k_1,0hex002BD000)
+
+) AND (BVLT(let_k_1,0hex00260000)
+ OR BVGT(let_k_1,0hex00276000)
+
+)
+) AND (((BVLT(let_k_1,0hex00310000)
+ OR BVGT(let_k_1,0hex00316000)
+
+) AND (BVLT(let_k_1,0hex002C0000)
+ OR BVGT(let_k_1,0hex00301000)
+
+)
+) AND (((BVLT(let_k_1,0hex00370000)
+ OR let_k_3
+) AND (BVLT(let_k_1,0hex00320000)
+ OR BVGT(let_k_1,0hex00361000)
+
+)
+) AND ((BVLT(let_k_1,0hex003B0000)
+ OR BVGT(let_k_1,0hex003C0000)
+
+) AND ((BVLT(let_k_1,0hex003C0000)
+ OR BVGT(let_k_1,0hex003CE000)
+
+) AND ((BVLT(let_k_1,0hex003D0000)
+ OR BVGT(let_k_1,0hex003D3000)
+
+) AND (BVLT(let_k_1,0hex003E0000)
+ OR BVGT(let_k_1,0hex003E7000)
+
+)
+)
+)
+)
+)
+)
+)
+)
+)
+) AND (((BVLT(let_k_1,0hex7C920000)
+ OR BVGT(let_k_1,0hex7C9B4000)
+
+) AND ((BVLT(let_k_1,0hex7C800000)
+ OR BVGT(let_k_1,0hex7C91C000)
+
+) AND (((BVLT(let_k_1,0hex76D70000)
+ OR BVGT(let_k_1,0hex76D92000)
+
+) AND ((BVLT(let_k_1,0hex00430000)
+ OR BVGT(let_k_1,0hex00553000)
+
+) AND (BVLT(let_k_1,0hex00560000)
+ OR BVGT(let_k_1,0hex00660000)
+
+)
+)
+) AND (BVLT(let_k_1,0hex77BD0000)
+ OR BVGT(let_k_1,0hex77BD8000)
+
+)
+)
+)
+) AND (((BVLT(let_k_1,0hex7FFA0000)
+ OR BVGT(let_k_1,0hex7FFD3000)
+
+) AND (BVLT(let_k_1,0hex7F6F0000)
+ OR BVGT(let_k_1,0hex7F7F0000)
+
+)
+) AND ((BVLT(let_k_1,0hex7FFDF000)
+ OR BVGT(let_k_1,0hex7FFE0000)
+
+) AND ((BVLT(let_k_1,0hex7FFDE000)
+ OR BVGT(let_k_1,0hex7FFDF000)
+
+) AND (BVLT(let_k_1,0hex7FFDD000)
+ OR BVGT(let_k_1,0hex7FFDE000)
+
+)
+)
+)
+)
+)
+)
+))  , path_expr = TRUE , , solving expr = (LET let_k_0 = BVSX(H_FILE_source_a__0,32)
+,
+let_k_1 = BVPLUS(32, 
+BVPLUS(32, 
+(let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+, 
+0hex0012FF80)
+, 
+0hexFFFFFB74)
+,
+let_k_2 = (BVLT(let_k_1,0hex003AD000)
+ OR BVGT(let_k_1,0hex003B0000)
+
+),
+let_k_3 = BVGT(let_k_1,0hex003B0000)
+ IN 
+NOT((((((BVLT(let_k_1,0hex0012E000)
+ OR BVGT(let_k_1,0hex00130000)
+
+) AND let_k_2
+) AND let_k_2
+) AND (((BVLT(let_k_1,0hex00400000)
+ OR BVGT(let_k_1,0hex00427000)
+
+) AND (((BVLT(let_k_1,0hex00140000)
+ OR BVGT(let_k_1,0hex00240000)
+
+) AND (BVLT(let_k_1,0hex00130000)
+ OR BVGT(let_k_1,0hex00133000)
+
+)
+) AND (((BVLT(let_k_1,0hex00250000)
+ OR BVGT(let_k_1,0hex00260000)
+
+) AND (BVLT(let_k_1,0hex00240000)
+ OR BVGT(let_k_1,0hex00250000)
+
+)
+) AND (((BVLT(let_k_1,0hex00280000)
+ OR BVGT(let_k_1,0hex002BD000)
+
+) AND (BVLT(let_k_1,0hex00260000)
+ OR BVGT(let_k_1,0hex00276000)
+
+)
+) AND (((BVLT(let_k_1,0hex00310000)
+ OR BVGT(let_k_1,0hex00316000)
+
+) AND (BVLT(let_k_1,0hex002C0000)
+ OR BVGT(let_k_1,0hex00301000)
+
+)
+) AND (((BVLT(let_k_1,0hex00370000)
+ OR let_k_3
+) AND (BVLT(let_k_1,0hex00320000)
+ OR BVGT(let_k_1,0hex00361000)
+
+)
+) AND ((BVLT(let_k_1,0hex003B0000)
+ OR BVGT(let_k_1,0hex003C0000)
+
+) AND ((BVLT(let_k_1,0hex003C0000)
+ OR BVGT(let_k_1,0hex003CE000)
+
+) AND ((BVLT(let_k_1,0hex003D0000)
+ OR BVGT(let_k_1,0hex003D3000)
+
+) AND (BVLT(let_k_1,0hex003E0000)
+ OR BVGT(let_k_1,0hex003E7000)
+
+)
+)
+)
+)
+)
+)
+)
+)
+)
+) AND (((BVLT(let_k_1,0hex7C920000)
+ OR BVGT(let_k_1,0hex7C9B4000)
+
+) AND ((BVLT(let_k_1,0hex7C800000)
+ OR BVGT(let_k_1,0hex7C91C000)
+
+) AND (((BVLT(let_k_1,0hex76D70000)
+ OR BVGT(let_k_1,0hex76D92000)
+
+) AND ((BVLT(let_k_1,0hex00430000)
+ OR BVGT(let_k_1,0hex00553000)
+
+) AND (BVLT(let_k_1,0hex00560000)
+ OR BVGT(let_k_1,0hex00660000)
+
+)
+)
+) AND (BVLT(let_k_1,0hex77BD0000)
+ OR BVGT(let_k_1,0hex77BD8000)
+
+)
+)
+)
+

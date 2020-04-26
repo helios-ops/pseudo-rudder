@@ -1,0 +1,50 @@
+a final path constraint is 
+
+
+ ( LET let_k_0 = BVSX( H_FILE_source_1_0,
+		       32
+		     )
+   ,
+   let_k_1 = BVPLUS( 32, 
+		     ( let_k_0[31:24] @ 
+		       ( let_k_0[23:16] @ 
+			 ( let_k_0[15:8] @ 
+			   let_k_0[7:0]
+			 )
+		       )
+		     ), 
+		     0hex00000001
+		   )
+    ,
+    let_k_2 = BVSX( ( let_k_1[31:24] @ 
+		      ( let_k_1[23:16] @ 
+			( let_k_1[15:8] @ 
+			  let_k_1[7:0]
+			)
+		      )
+		    )[8:0][7:0],
+		    32
+ 		  )
+ IN 
+    ( TRUE AND ( 0bin0000000000000000000000000000000 @ 
+		 IF( BVSUB( 32, 
+			    ( let_k_2[31:24] @ 
+			      ( let_k_2[23:16] @ 
+			        ( let_k_2[15:8] @ 
+				  let_k_2[7:0]
+			        )
+			      )
+			    ), 
+			    0hex00000062
+			  )
+		     = 0hex00000000
+		   )
+		   THEN 0bin1
+		   ELSE 0bin0
+		   ENDIF
+		)
+		[1:0][0:0] = 0bin0
+
+    )
+ )  
+

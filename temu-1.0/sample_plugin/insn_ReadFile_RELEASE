@@ -1,0 +1,32 @@
+Hooking HHui_ReadFile_call( ) ---- eip -   40103b !
+ReadFile( ) cur eip = 0040103b
+ReadFile( ) input length = 1
+ReadFile( ) taint source introduction : H_FILE_source_1 ----- total length is 1
+!: eip=0040171f jz 0x3
+my cjmp ! : 0
+ CJMP --- eip=0040171f jz 0x3
+tainted origin for ZF bit : 0. 
+!: eip=00401721 inc eax
+!: eip=00401a73 push edi
+!: eip=00401a7a call 0xffffff75
+!: eip=00401a04 mov byte ptr ds[edx], al
+!: eip=00401a06 inc dword ptr ds[ecx]
+!: eip=00401a0b jmp 0xb
+!: eip=00401a1b mov eax, dword ptr ss[ebp+0x10]
+my cjmp ! : 0
+ CJMP --- eip=00401a1e jnz 0x5
+tainted origin for ZF bit : 0. 
+!: eip=00401a25 inc dword ptr ds[eax]
+!: eip=00403ffa cmp cl, 0xa
+!: eip=00403ffd jnz 0x7
+my cjmp ! : 0
+ CJMP --- eip=00403ffd jnz 0x7
+tainted origin for ZF bit : 0. 
+!: eip=00404006 mov byte ptr ds[eax], cl
+!: eip=00404008 inc eax
+!: eip=0040106b add esp, 0x8
+!: eip=00401070 jnz 0xd
+my cjmp ! : 1
+ CJMP --- eip=00401070 jnz 0xd
+tainted origin for ZF bit : 0. 
+

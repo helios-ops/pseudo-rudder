@@ -1,0 +1,12 @@
+#ifndef H_HH_IR_TRANSLATE_CONFIG_H
+    #define H_HH_IR_TRANSLATE_CONFIG_H
+
+    #ifndef H_TRANSLATE_SINGLE_INSN_2_IR
+        #define H_TRANSLATE_SINGLE_INSN_2_IR
+    #endif
+
+    #ifndef H_DELETE_OPRND_EXPR
+    #endif
+
+
+#endif

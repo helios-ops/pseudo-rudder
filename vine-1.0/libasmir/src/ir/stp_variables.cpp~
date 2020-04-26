@@ -1,0 +1,2 @@
+#include "H_STP_stub.h"
+HExpr * (*obtaint_stp_vars_array)(int * count);

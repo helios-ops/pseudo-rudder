@@ -1,0 +1,61 @@
+(LET let_k_0 = (H_FILE_source_C:\Experiments\buf_overflow1\a.txt__3 @ (H_FILE_source_C:\Experiments\buf_overflow1\a.txt__2 @ (H_FILE_source_C:\Experiments\buf_overflow1\a.txt__1 @ H_FILE_source_C:\Experiments\buf_overflow1\a.txt__0)
+)
+)
+,
+let_k_1 = BVXOR((let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+,0hexFFFFFFFF)
+,
+let_k_2 = (let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+,
+let_k_3 = BVPLUS(32, 
+let_k_2, 
+0hex7EFEFEFF)
+,
+let_k_4 = BVXOR((let_k_1[31:24] @ (let_k_1[23:16] @ (let_k_1[15:8] @ let_k_1[7:0])
+)
+)
+,(let_k_3[31:24] @ (let_k_3[23:16] @ (let_k_3[15:8] @ let_k_3[7:0])
+)
+)
+)
+,
+let_k_5 = NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(((let_k_4[31:24] @ (let_k_4[23:16] @ (let_k_4[15:8] @ let_k_4[7:0])
+)
+)
+ & 0hex81010100) = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+,
+let_k_6 = NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF((0hex000000 @ let_k_2[7:0])
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+ IN 
+((((TRUE AND let_k_5
+) AND let_k_6
+) AND let_k_5
+) AND let_k_6
+))  

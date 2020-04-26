@@ -1,0 +1,61 @@
+#0  0x008cf2a8 in ?? () from /usr/lib/libstdc++.so.6
+#1  0x008d0428 in std::locale::locale() () from /usr/lib/libstdc++.so.6
+#2  0x0102574d in basic_streambuf (this=0x152e3a18, kind=BEEV::BVCONCAT, dst_expr1=0x33ad541c, var_expr1=0x34fa0b20, sub_expr1=0x34fa0bf8, 
+    count=4, changed=0xbfffa51c) at /usr/include/c++/4.4/streambuf:442
+#3  basic_stringbuf (this=0x152e3a18, kind=BEEV::BVCONCAT, dst_expr1=0x33ad541c, var_expr1=0x34fa0b20, sub_expr1=0x34fa0bf8, count=4, 
+    changed=0xbfffa51c) at /usr/include/c++/4.4/sstream:93
+#4  basic_stringstream (this=0x152e3a18, kind=BEEV::BVCONCAT, dst_expr1=0x33ad541c, var_expr1=0x34fa0b20, sub_expr1=0x34fa0bf8, count=4, 
+    changed=0xbfffa51c) at /usr/include/c++/4.4/sstream:511
+#5  BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::BVCONCAT, dst_expr1=0x33ad541c, var_expr1=0x34fa0b20, sub_expr1=0x34fa0bf8, 
+    count=4, changed=0xbfffa51c) at AST.cpp:698
+#6  0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::BVCONCAT, dst_expr1=0x3011cdec, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffa65c) at AST.cpp:809
+#7  0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::BVCONCAT, dst_expr1=0x32c392b8, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffa79c) at AST.cpp:809
+#8  0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::BVEXTRACT, dst_expr1=0x32c39bb8, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffa8dc) at AST.cpp:809
+#9  0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::BVCONCAT, dst_expr1=0x33ad4354, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffaa1c) at AST.cpp:809
+#10 0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::BVCONCAT, dst_expr1=0x32c399d4, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffab5c) at AST.cpp:809
+#11 0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::BVCONCAT, dst_expr1=0x34b61960, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffac9c) at AST.cpp:809
+#12 0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::BVSUB, dst_expr1=0x34b61778, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffaddc) at AST.cpp:809
+#13 0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::EQ, dst_expr1=0x34b61060, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffaf1c) at AST.cpp:809
+#14 0x01025885 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::ITE, dst_expr1=0x33ad3a50, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffb05c) at AST.cpp:836
+#15 0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::BVEXTRACT, dst_expr1=0x31f58200, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffb19c) at AST.cpp:809
+#16 0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::EQ, dst_expr1=0x32c38200, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffb2dc) at AST.cpp:809
+#17 0x01025885 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::NOT, dst_expr1=0x309f1f48, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffb41c) at AST.cpp:836
+#18 0x01025885 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::ITE, dst_expr1=0x33ad298c, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffb55c) at AST.cpp:836
+#19 0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::BVCONCAT, dst_expr1=0x2f26a440, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffb69c) at AST.cpp:809
+#20 0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::BVEXTRACT, dst_expr1=0x34b5ffa8, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffb7dc) at AST.cpp:809
+#21 0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::BVEXTRACT, dst_expr1=0x34b5fdc0, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffb91c) at AST.cpp:809
+#22 0x010259b0 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::EQ, dst_expr1=0x34b5f6a8, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffba5c) at AST.cpp:809
+#23 0x01025885 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::NOT, dst_expr1=0x33ad2088, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffbb9c) at AST.cpp:836
+---Type <return> to continue, or q <return> to quit---
+#24 0x01025885 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::NOT, dst_expr1=0x32c37904, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffbcdc) at AST.cpp:836
+#25 0x01025885 in BEEV::BeevMgr::CreateNode_HHui (this=0x152e3a18, kind=BEEV::AND, dst_expr1=0x31cc9248, var_expr1=0x34fa0b20, 
+    sub_expr1=0x34fa0bf8, count=4, changed=0xbfffbd34) at AST.cpp:836
+#26 0x0100fcf8 in H_var_substitute_4expr (vc=0x152e3a18, dst_expr=0x31cc9248, var_expr=0x34fa0b20, sub_expr=0x34fa0bf8, count=4)
+    at c_interface.cpp:1603
+#27 0x00ff80cf in func_summ_postcondition_apply (func_m_entry=0x15862538) at expr_condition.c:754
+#28 0x00ff9b3f in general_function_summary_end (opaque=0x34595330) at function_summary_yacc.y:498
+#29 0x01005244 in hookapi_check_call (in_context=1) at ../shared/hookapi.c:401
+#30 0x00ffc601 in my_block_begin () at main.c:1078
+#31 0x12878c55 in code_gen_buffer ()
+#32 0x080f0964 in cpu_x86_exec (env1=0x14bf96a0) at /home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/cpu-exec.c:681
+#33 0x0806fcf7 in main (argc=1245036, argv=0x7ffd4000) at /home/hhui/Experiments/BitBlaze/Total_Components/temu-1.0/vl.c:7582
+

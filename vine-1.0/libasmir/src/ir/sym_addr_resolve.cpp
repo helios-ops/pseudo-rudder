@@ -1,0 +1,1057 @@
+#include <inttypes.h>
+#include <stdlib.h>
+#include <malloc.h>
+
+// using namespace std;
+
+// #include "hc_interface.h"
+#include "../include/H_STP_stub.h"
+
+#include "H_taint_record.h"
+
+// #include "../include/GetTemuData.h"
+
+#include "sym_addr_resolve.h"
+// #include "../include/formula_solve.h"
+
+#include "H_vulscan_config.h"
+
+extern int * H_vulscan_once_enough_err_found;
+
+extern void (*H_term_printf)( const char * fstr, ... );
+
+
+#ifdef H_DEBUG_TEST
+
+extern void (*temu_dbg_dump_expr)( HExpr  expr,
+			    	   char * filename,
+			    	   char * tc_filename,
+				   int    category
+			  	 );
+
+extern void (*H_predicate_change)( HVC   hvc,
+		   	    	   HExpr pred_expr,
+			    	   HExpr prev_total_expr,
+			    	   HExpr total_expr
+		     	  	 );
+#endif
+
+
+extern uint64_t HH_Query_TemuMemTaintStatus( uint32_t  		m_address,
+				     	     int		m_length,
+				      	     H_taint_record_t * h_taint_recoird
+				    	   );
+
+
+void GetConcreteMemData( uint32_t m_address, 
+			 int	  m_length, 
+			 void *   buf
+		       );
+
+uint64_t HH_Query_TemuMemTaintStatus( uint32_t		 m_address,
+				      int      		 m_length,
+				      H_taint_record_t * records
+				    );
+
+
+
+extern uint32_t * HH_vad_root;
+extern int ( *HH_build_symaddr_invalid_constraint)( HVC        hvc,
+					            HExpr      symaddr_expr,
+	  		            	            int        access_mode,      /* 1 -- read; 2 -- write; 4 -- execute */
+				             	    uint32_t * vad_root,
+				             	    HExpr *    out_of_range_expr,
+				             	    HExpr *    invalid_access_expr
+			      	           	  );
+
+
+extern void (*HH_symaddr_obtain_stack_range_constraint)( HVC     hvc,
+							 HExpr   symaddr,
+						  	 HExpr * out_of_range_constraint
+						       );
+
+extern void (*HH_symaddr_stack_eip_overwritten_constraint)( HVC     hvc,
+							    HExpr   symaddr,
+						  	    HExpr * out_of_range_constraint
+						          );
+/* =========================================================================================================== */
+static value_entry_set_t symaddr_value_entry_set;
+
+void init_value_entry_set( )
+{
+    symaddr_value_entry_set.head  = NULL;
+    symaddr_value_entry_set.tail  = NULL;
+    symaddr_value_entry_set.count = 0;
+}// end of init_value_entry_set( )
+
+
+void free_value_entry_set( )
+{
+    Pvalue_entry_t entry = NULL;
+
+    while(symaddr_value_entry_set.count != 0)
+    {
+	entry = (symaddr_value_entry_set.head)->next;
+	free(symaddr_value_entry_set.head);
+	symaddr_value_entry_set.head = entry;	
+	
+	symaddr_value_entry_set.count = symaddr_value_entry_set.count - 1;
+    }// end of while{ }
+
+    symaddr_value_entry_set.head = NULL;
+    symaddr_value_entry_set.tail = NULL;
+}// end of free_value_entry_set( )
+
+
+void add_value_entry_to_set(uint32_t value)
+{
+    Pvalue_entry_t entry = (Pvalue_entry_t)malloc(sizeof(value_entry_t));
+    entry->value = value;
+    entry->next  = NULL;
+
+    if(symaddr_value_entry_set.head == NULL)
+    {
+	symaddr_value_entry_set.head = entry;
+	symaddr_value_entry_set.tail = entry;
+    }
+    else
+    {
+	(symaddr_value_entry_set.tail)->next = entry;
+	symaddr_value_entry_set.tail = (symaddr_value_entry_set.tail)->next;
+    }// end of if( )
+
+    symaddr_value_entry_set.count = symaddr_value_entry_set.count + 1;
+}// end of add_value_entry_to_set( )
+
+
+void fetch_all_values_from_set(uint32_t * arr)
+{
+    Pvalue_entry_t entry = symaddr_value_entry_set.head;
+
+    for(int i=0; i<symaddr_value_entry_set.count; i=i+1)
+    {
+	arr[i] = entry->value;
+	entry  = entry->next;
+    }// end of for{ }
+
+}// end of fetch_all_values_from_set( )
+/* =========================================================================================================== */
+
+
+
+
+
+/* returns 0 if no safety-violations have been found; else if could be exploited directly 2; else 1 */
+int hvc_symaddr_solve( HVC         hvc,
+		       HExpr *     path_expr,
+		       HExpr       symaddr_expr,
+		       int         access_mode,      	 /* 1 -- read; 2 -- write; 4 -- execute */
+		       HExpr *     invalid_constraint_exprs, // 3 elements' array holding ERRORs' constraints, separately namely OUT_OF_RANGE, INVALID_ACCESS and stack-overwrite !
+		       // HExpr *     illegal_constraint_exprs, // 2 elements' array holding ERRORs' constraints !
+		       uint32_t ** correct_concrete_addrs_values,
+		       HExpr **    symaddr_correct_concrete_addrs_constraints,
+		       int   *     correct_concrete_addrs_count
+		     )
+{
+    HExpr out_of_range_expr   = NULL;
+    HExpr invalid_access_expr = NULL;
+
+    HExpr stack_out_of_range_expr     = NULL;
+    HExpr stack_eip_over_written_expr = NULL;
+
+    invalid_constraint_exprs[0] = NULL;
+    invalid_constraint_exprs[1] = NULL;
+
+    HType tmp_type  = NULL;
+    HExpr tmp_expr1 = NULL;
+    HExpr tmp_expr2 = NULL;
+    HExpr tmp_expr3 = NULL;
+    char * tmp_str_expr = NULL;   
+
+    H_term_printf( "*HH_vad_root = 0x%x\n",
+		   *HH_vad_root
+		 );
+
+    // notice, it just building the material, rather than vc_query( ) for the current path-constraint !
+    int qresult = HH_build_symaddr_invalid_constraint( hvc,
+					               symaddr_expr,
+	  		            	               access_mode, 	   /* 1 -- read; 2 -- write; 4 -- execute */
+				             	       HH_vad_root, 	   // pointer-to VAD !
+				             	       &out_of_range_expr,
+				             	       &invalid_access_expr
+			      	           	     );
+
+    /*
+    // special treat for stack-case as they do not appear in the VADs !
+    HH_symaddr_obtain_stack_range_constraint( hvc,
+					      symaddr_expr,
+					      &stack_out_of_range_expr
+					    );
+    */
+
+
+    // checks if stack-eip would be over-written
+    if( (access_mode & 2) != 0 )
+    {
+        HH_symaddr_stack_eip_overwritten_constraint( hvc,
+						     symaddr_expr,
+						     &stack_eip_over_written_expr
+					           );
+    }// end of if(access_mode)
+
+
+    if(out_of_range_expr != NULL)
+    {
+	// checks for out-of-range address constraint !
+	/* ----------------------------------------------------------------------- */
+    /*
+	tmp_str_expr = exprString(stack_out_of_range_expr);
+	H_term_printf( "stack_out_of_range_expr : %s",
+		       tmp_str_expr
+		     );
+	free(tmp_str_expr);
+     */
+
+	tmp_str_expr = exprString(out_of_range_expr);
+	H_term_printf( "out_of_range_expr : %s",
+		       tmp_str_expr
+		     );
+	free(tmp_str_expr);
+
+    /*
+	tmp_expr1 = vc_andExpr( hvc,
+				stack_out_of_range_expr,
+				out_of_range_expr
+			      );
+     */
+	tmp_expr1 = out_of_range_expr;
+
+	out_of_range_expr = tmp_expr1;
+
+	tmp_expr1 = vc_andExpr( hvc,
+				tmp_expr1,
+				*path_expr
+			      );
+
+	tmp_expr2 = vc_notExpr( hvc,
+			    	tmp_expr1
+			      );
+	    
+	vc_push(hvc);
+	    
+	qresult = vc_query( hvc,
+			    tmp_expr2
+		    	  );	  		
+/*
+	H_term_printf( "An OUT-OF-RANGE safety-violation expression : %s, path_expr = %s, , solving expr = %s, qresult = %d\n",
+		       exprString(out_of_range_expr),
+		       exprString(*path_expr),
+		       exprString(tmp_expr2),
+		       qresult
+		     );
+
+ */	
+	
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/*
+	if(qresult == 0)
+	{
+		int count1 = 0;
+		HExpr * stp_vars1 = obtain_stp_vars_array(&count1);
+	
+		HWholeCounterExample hswc1 = vc_getWholeCounterExample(hvc);
+		HExpr data1 = vc_getTermFromCounterExample( hvc,
+						      	    stp_vars1[0],
+							    hswc1
+					    		  );
+		vc_pop(hvc);
+
+		H_term_printf( "[0] = 0x%x satisfying predicate !\n",
+			       getBVInt(data1)
+			     );
+		free(stp_vars1);
+	}// end of if( )
+*/
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+	vc_pop(hvc);
+
+	// NOT is invalid, which means the formula is satisfiable !
+	if(qresult == 0)
+	{
+	    invalid_constraint_exprs[0] = out_of_range_expr;
+	    H_term_printf( "An OUT-OF-RANGE safety-violation does exist !\n");
+
+ 	}// end of if( )
+
+	/*
+	tmp_expr3 = NULL;
+	*( (char *)tmp_expr3 ) = 1;
+	 */
+
+	// vc_DeleteExpr
+	vc_DeleteExpr(tmp_expr1);
+	vc_DeleteExpr(tmp_expr2);
+	/* ----------------------------------------------------------------------- */
+	// checks for out-of-range address constraint !
+    }// end of if(out_of_range_expr != NULL)
+
+
+    if(invalid_access_expr != NULL)
+    {
+/*
+	    H_term_printf( "An INVALID-ACCESS safety-violation expression : %s\n",
+			   exprString(invalid_access_expr)
+			 );
+ */
+	// checks for invalid-access constraint !
+	/* ----------------------------------------------------------------------- */
+	tmp_expr1 = vc_andExpr( hvc,
+				*path_expr,
+				invalid_access_expr
+			      );
+
+	tmp_expr2 = vc_notExpr( hvc,
+				tmp_expr1
+			      );
+	vc_push(hvc);
+	qresult = vc_query( hvc,
+			    tmp_expr2
+		    	  );	
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+	if(qresult == 0)
+	{
+		int count2 = 0;
+		HExpr * stp_vars2 = obtain_stp_vars_array(&count2);
+	
+		HWholeCounterExample hswc2 = vc_getWholeCounterExample(hvc);
+		HExpr data2 = vc_getTermFromCounterExample( hvc,
+						      	    stp_vars2[0],
+							    hswc2
+					    		  );
+		vc_pop(hvc);
+
+		H_term_printf( "[0] = 0x%x satisfying predicate !\n",
+			       getBVInt(data2)
+			     );
+		free(stp_vars2);
+	}// end of if( )
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  		
+	vc_pop(hvc);
+
+	/// NOT is invalid, which means the formula is satisfiable !
+	if(qresult == 0)
+	{
+	    invalid_constraint_exprs[1] = invalid_access_expr;
+
+	    H_term_printf( "An INVALID-ACCESS safety-violation does exist !\n");
+ 	}// end of if( )
+
+	vc_DeleteExpr(tmp_expr1);	 
+   	vc_DeleteExpr(tmp_expr2);
+	/* ----------------------------------------------------------------------- */
+	// checks for invalid-access constraint !
+
+    }// end of if(invalid_access_expr != NULL)
+
+
+    if( ( (access_mode & 2) != 0 ) &&
+	(stack_eip_over_written_expr != NULL)
+      )
+    {
+	tmp_str_expr = exprString(stack_eip_over_written_expr);
+	H_term_printf( "stack-eip-overwritten-expr = %s",
+		       tmp_str_expr
+		     );
+	free(tmp_str_expr);
+
+	tmp_expr1 = vc_andExpr( hvc,
+				*path_expr,
+				stack_eip_over_written_expr
+			      );
+
+	tmp_expr2 = vc_notExpr( hvc,
+				tmp_expr1
+			      );
+	vc_push(hvc);
+	qresult = vc_query( hvc,
+			    tmp_expr2
+		    	  );	
+	vc_pop(hvc);
+	
+	// tmp_str_expr = exprString();
+	H_term_printf( "querying for stack-eip overwritten --- qresult = %d!\n",
+		       qresult
+		     );
+
+	if(qresult == 0)
+	{
+	    invalid_constraint_exprs[2] = stack_eip_over_written_expr;
+	    H_term_printf( "A stack-eip overwritten problem does exist !\n");
+	}// end of if(qresult)
+
+    }// end of if( (access_mode...) && (stack_eip_over_written_expr...) )
+
+
+    // Now, to focus on the correct concrete values for the SYM-ADDR 
+    /* -------------------------------------------------------------------------------- */
+    if( (invalid_constraint_exprs[0] == NULL) &&
+	(invalid_constraint_exprs[1] == NULL)
+      )
+    {
+	// write-mode
+	if((access_mode & 2) != 0)
+	{
+	    if(invalid_constraint_exprs[2] == NULL)
+	    {
+		*correct_concrete_addrs_count = symaddr_concrete_solve( hvc,
+								        path_expr,
+							                symaddr_expr,
+							  		correct_concrete_addrs_values,
+									symaddr_correct_concrete_addrs_constraints 
+									// Constraint : sym_addr == con_addr
+			      				      	      );
+		return 0;
+
+	    }// end of if(invalid_constraint_exprs)
+	}
+	else
+	{
+	    // read-mode
+	    if((access_mode & 1) != 0)
+	    {
+		*correct_concrete_addrs_count = symaddr_concrete_solve( hvc,
+								        path_expr,
+							                symaddr_expr,
+							  		correct_concrete_addrs_values,
+									symaddr_correct_concrete_addrs_constraints 
+									// Constraint : sym_addr == con_addr
+			      				      	      );
+		return 0;
+	    }// end of if(access_mode)
+	}// end of if(access_mode)
+
+	/*
+	H_term_printf( "complete symbolic addressing solving --- path_expr = %s !\n",
+		       exprString(*path_expr)
+		     );
+	 */
+    }// end of if( )
+    /* -------------------------------------------------------------------------------- */
+    // Now, to focus on the correct concrete values for the SYM-ADDR 
+
+    /*
+    if( ((access_mode & 2) != 0) &&
+	(invalid_constraint_exprs[2] != NULL)
+      )
+    {
+	return 1;
+    }// end of if(access_mode)
+    */
+
+    if( (invalid_constraint_exprs[0] != NULL) || 
+	(invalid_constraint_exprs[1] != NULL) ||
+	(invalid_constraint_exprs[2] != NULL)	
+      )
+    {
+	
+	if(invalid_constraint_exprs[0] != NULL)
+	{
+	    tmp_expr1 = vc_notExpr( hvc,
+				    invalid_constraint_exprs[0]
+				  );
+	    tmp_expr2 = vc_andExpr( hvc,
+				    *path_expr,
+				    tmp_expr1
+				  );
+	    tmp_expr3 = vc_notExpr( hvc,
+				    tmp_expr2
+				  );
+
+	    vc_push(hvc);
+	    qresult   = vc_query( hvc,
+				  tmp_expr3
+				);
+	    vc_pop(hvc);
+	    
+	    if(qresult == 0)
+	    {
+	    #ifdef H_DEBUG_TEST
+	        if(H_predicate_change != NULL)
+	        {
+		    H_predicate_change( hvc,
+			  	        tmp_expr1,
+				        *path_expr,
+				        tmp_expr2
+				      );
+	        }// end of if(H_predicate_change)
+	    #endif
+	    
+	        *path_expr = vc_andExpr( hvc,
+			   	         *path_expr,
+				         tmp_expr1				       
+				       );
+	    }
+	#ifdef H_DEBUG_TEST
+	    else
+	    {
+		temu_dbg_dump_expr( *path_expr,
+				    "dbg_path_expr",
+				    "dbg_path_expr_tc",
+				    1
+				  );
+		
+		temu_dbg_dump_expr( invalid_constraint_exprs[0],
+				    "dbg_out-of-range_expr",
+				    "dbg_out-of-range_expr_tc",
+				    1
+				  );
+
+		H_term_printf("fucking predicate !\n");
+	    }// end of if(qresult)
+	#endif
+
+	    vc_DeleteExpr(tmp_expr3);
+	    vc_DeleteExpr(tmp_expr2);
+	    vc_DeleteExpr(tmp_expr1);
+	    
+	}// end of if( )
+	
+	
+	if(invalid_constraint_exprs[1] != NULL)
+	{
+	    tmp_expr1  = vc_notExpr( hvc,
+				     invalid_constraint_exprs[1]
+				   );
+	    tmp_expr2 = vc_andExpr( hvc,
+				    *path_expr,
+				    tmp_expr1
+				  );
+	    tmp_expr3 = vc_notExpr( hvc,
+				    tmp_expr2
+				  );
+
+	    vc_push(hvc);
+	    qresult   = vc_query( hvc,
+				  tmp_expr3
+				);
+	    vc_pop(hvc);
+	    
+	    if(qresult == 0)
+	    {
+   	    #ifdef H_DEBUG_TEST
+	        if(H_predicate_change != NULL)
+	        {
+		    H_predicate_change( hvc,
+		 		        tmp_expr1,
+				        *path_expr,
+				        tmp_expr2
+				      );
+  	        }// end of if(H_predicate_change)
+	    #endif
+	        *path_expr = vc_andExpr( hvc,
+				         *path_expr,
+				         tmp_expr1				     
+				       );
+	    }
+	#ifdef H_DEBUG_TEST
+	    else
+	    {
+		temu_dbg_dump_expr( *path_expr,
+				    "dbg_path_expr",
+				    "dbg_path_expr_tc",
+				    1
+				  );
+		
+		temu_dbg_dump_expr( invalid_constraint_exprs[1],
+				    "dbg_invalid-access_expr",
+				    "dbg_invalid-access_expr_tc",
+				    1
+				  );
+
+		H_term_printf("fucking predicate !\n");
+	    }// end of if(qresult)
+	#endif
+	    // end of if(qresult)
+
+	    vc_DeleteExpr(tmp_expr3);
+	    vc_DeleteExpr(tmp_expr2);
+	    vc_DeleteExpr(tmp_expr1);
+	}// end of if( )
+
+	// stack-eip overwritten problem !
+	if(invalid_constraint_exprs[2] != NULL)
+	{
+	    tmp_expr1  = vc_notExpr( hvc,
+				     invalid_constraint_exprs[2]
+				   );
+	    tmp_expr2 = vc_andExpr( hvc,
+				    *path_expr,
+				    tmp_expr1
+				  );
+	    tmp_expr3 = vc_notExpr( hvc,
+				    tmp_expr2
+				  );
+
+	    vc_push(hvc);
+	    qresult   = vc_query( hvc,
+				  tmp_expr3
+				);
+	    vc_pop(hvc);
+	    
+	    if(qresult == 0)
+	    {
+	    #ifdef H_DEBUG_TEST
+	        if(H_predicate_change != NULL)
+	        {
+		    H_predicate_change( hvc,
+				        tmp_expr1,
+				        *path_expr,
+				        tmp_expr2
+				      );
+	        }// end of if(H_predicate_change)
+	    #endif
+
+	        *path_expr = vc_andExpr( hvc,
+				         *path_expr,
+		    		         tmp_expr1				     
+				       );
+	    }
+	#ifdef H_DEBUG_TEST
+	    else
+	    {
+		temu_dbg_dump_expr( *path_expr,
+				    "dbg_path_expr",
+				    "dbg_path_expr_tc",
+				    1
+				  );
+		
+		temu_dbg_dump_expr( invalid_constraint_exprs[2],
+				    "dbg_stack-eip_overwritten_expr",
+				    "dbg_stack-eip_overwritten_expr_tc",
+				    1
+				  );
+
+		H_term_printf("fucking predicate !\n");
+	    }// end of if(qresult)
+	#endif
+
+	    vc_DeleteExpr(tmp_expr3);
+	    vc_DeleteExpr(tmp_expr2);
+	    vc_DeleteExpr(tmp_expr1);
+	}// end of if( )
+
+
+    #ifndef H_VULSCAN_ONCE_ENOUGH
+	*correct_concrete_addrs_count = symaddr_concrete_solve( hvc,
+								path_expr,
+							        symaddr_expr,
+								correct_concrete_addrs_values,
+								symaddr_correct_concrete_addrs_constraints 
+								// Constraint : sym_addr == con_addr
+			    	  			      );
+    #endif
+	return 1;
+    }// end of if( )
+
+    return 0;
+
+}// end of hvc_symaddr_solve( )
+
+
+
+/* calculate out all possible concrete values for this symbolic-addressing-expression */
+int symaddr_concrete_solve( HVC         hvc,
+		       	    HExpr *     path_expr,
+		      	    HExpr       symaddr_expr,
+			    uint32_t ** correct_concrete_addrs_values, 
+			    // caller should be responsible for free( ) it !
+
+			    HExpr **    symaddr_correct_concrete_addrs_constraints 
+			    // wishing to return Constraints like "sym_addr == con_addr"
+			  )
+{
+    int i = 0;
+    int j = 0;
+
+    HExpr *   x_var_exprs  = NULL;
+    int       x_var_count  = 0;
+    uint8_t * x_var_values = NULL;
+
+    x_var_exprs  = obtain_stp_vars_array(&x_var_count);
+    H_term_printf( "x_variables count = 0x%x\n",
+		   x_var_count
+		 );
+
+    x_var_values = (uint8_t *)malloc(sizeof(uint8_t) * x_var_count);
+
+    HType tmp_type  = vc_getType( hvc,
+				  symaddr_expr
+				);
+
+    HExpr common_expr     = *path_expr;
+    HExpr not_common_expr = NULL;
+
+    HExpr tmp_expr1   = NULL;
+    HExpr tmp_expr2   = NULL;
+    HExpr tmp_expr3   = NULL;
+    HExpr tmp_expr4   = NULL;
+    HExpr tmp_expr5   = NULL;
+    HExpr tmp_expr6   = NULL;
+    HExpr tmp_expr7   = NULL;
+    HExpr tmp_expr8   = NULL;
+    HExpr tmp_expr9   = NULL;
+    HExpr tmp_expr10  = NULL;
+    HExpr pred_expr   = NULL;
+ 
+    HWholeCounterExample wc = NULL;
+
+    uint32_t tmp_value  = 0;
+    int      tmp_length = vc_getBVLength( hvc,
+					  symaddr_expr
+				        );
+    int   count       = 0;
+    int   qresult     = 0;
+    int   qsub_result = 0;
+
+    init_value_entry_set( );
+    
+    char * temp_str = NULL;
+
+    while(qresult == 0)
+    {	
+	pred_expr = vc_trueExpr(hvc);
+        not_common_expr = vc_notExpr( hvc,
+				      common_expr
+				    );
+
+	vc_push(hvc);	
+	qresult = vc_query( hvc,
+			    not_common_expr
+			  );
+
+	if(qresult == 0)
+	{
+	    // H_term_printf("a satisfying value ! --- ");
+
+	    wc = vc_getWholeCounterExample(hvc);
+	    for(i=0; i<x_var_count; i=i+1)
+	    {
+	        tmp_expr1 = vc_getTermFromCounterExample( hvc,
+						          x_var_exprs[i],
+						          wc
+						        );
+		x_var_values[i] = (uint8_t)getBVInt(tmp_expr1);
+		tmp_expr2 = vc_bvConstExprFromInt( hvc,
+						   8,
+						   x_var_values[i]
+						 );
+		tmp_expr3 = vc_eqExpr( hvc,
+				      x_var_exprs[i],
+				      tmp_expr2
+				    );
+		
+		pred_expr = vc_andExpr( hvc,
+					pred_expr,
+					tmp_expr3
+				      );
+		
+		vc_DeleteExpr(tmp_expr3);
+		vc_DeleteExpr(tmp_expr2);
+	    }// end of for{i}
+
+	    vc_pop(hvc);
+
+	    tmp_expr4 = vc_varExpr( hvc,
+				    "tmp_symaddr_var",
+				    tmp_type
+				  );
+	    tmp_expr5 = vc_eqExpr( hvc,
+				   tmp_expr4,
+				   symaddr_expr
+				 );
+	    tmp_expr10 = vc_andExpr( hvc,
+				     tmp_expr5,
+				     pred_expr
+				   );
+	    tmp_expr6  = vc_notExpr( hvc,
+				     tmp_expr10
+				   );
+
+	    vc_push(hvc);
+	    qsub_result = vc_query( hvc,
+				    tmp_expr6
+				  );
+	    if(qsub_result == 0)
+	    {
+		wc 	  = vc_getWholeCounterExample(hvc);
+		tmp_expr7 = vc_getTermFromCounterExample( hvc,
+						          tmp_expr4,
+						          wc
+						        );
+		tmp_expr7 = vc_simplify( hvc,
+					 tmp_expr7
+				       );
+		tmp_value = getBVInt(tmp_expr7);
+		
+		// we've obtained a suitable value for this SYMADDR !
+		add_value_entry_to_set(tmp_value);
+		count = count + 1;
+
+		vc_pop(hvc);	
+
+		H_term_printf( "[%d] --- we've got a new value : %x\n",
+			       count,
+			       tmp_value			       
+			     );
+
+		/*  Now, to carry on further investigation for this SYMADDR, we should denote
+		    the value 'A' as INVALID by stating 'SYMADDR != A' in the conditional cons-
+		    -traint then carry on the solving process.
+		 */ 
+		/* ======================================================================== */
+		tmp_expr8 = vc_eqExpr( hvc,
+				       tmp_expr7,
+				       symaddr_expr 		
+				     );
+		tmp_expr9 = vc_notExpr( hvc,
+					tmp_expr8
+				      );
+		common_expr = vc_andExpr( hvc,
+					  common_expr,
+					  tmp_expr9
+					);
+		/* ======================================================================== */		
+
+		vc_DeleteExpr(tmp_expr9);
+		vc_DeleteExpr(tmp_expr8);
+		vc_DeleteExpr(tmp_expr7);
+
+		vc_DeleteExpr(tmp_expr6);
+		vc_DeleteExpr(tmp_expr10);
+		vc_DeleteExpr(tmp_expr5);
+		vc_DeleteExpr(tmp_expr4);
+
+		vc_DeleteExpr(pred_expr);
+
+	    #ifdef H_LIMIT_SYMADDR_TEST_RANGE
+		if(count == SYMADDR_RANGE)
+		{
+		    break;
+		}// end of if(count)
+	    #endif
+
+		continue;
+	    }// end of if(qsub_result)	    
+
+	    vc_DeleteExpr(tmp_expr6);
+	    vc_DeleteExpr(tmp_expr10);
+	    vc_DeleteExpr(tmp_expr5);
+	    vc_DeleteExpr(tmp_expr4);
+	    
+	}// end of if(qresult)
+	
+
+	vc_pop(hvc);	
+	vc_DeleteExpr(pred_expr);
+	// pred_expr = vc_trueExpr(hvc);
+
+    }// end of while{qresult}
+   
+    
+
+    if(count != 0)
+    {
+	*correct_concrete_addrs_values = (uint32_t *)malloc(sizeof(uint32_t) * count);
+	fetch_all_values_from_set(*correct_concrete_addrs_values);
+	
+	*symaddr_correct_concrete_addrs_constraints = (HExpr *)malloc(sizeof(HExpr) * count);
+	for(i=0; i<count; i=i+1)
+	{
+	    tmp_expr1 = vc_bvConstExprFromInt( hvc,
+					       tmp_length,
+					       ( (uint32_t *)*correct_concrete_addrs_values )[i]
+					     );
+	    ( (HExpr *)(*symaddr_correct_concrete_addrs_constraints) )[i] = vc_eqExpr( hvc,
+										       symaddr_expr,
+										       tmp_expr1
+										     );
+	    vc_DeleteExpr(tmp_expr1);
+	}// end of for{i}
+
+    }// end of if( )
+
+    free(x_var_exprs);
+    free(x_var_values);
+
+    free_value_entry_set( );
+
+    // H_term_printf("ddddddddddddddddddddd\n");
+    
+    return count;
+}// end of symaddr_concrete_solve( )
+
+
+
+
+/* For SYM-Addressing memory READing ! */
+HExpr symaddr_reading_expr_formulate( HVC        hvc,
+				      uint32_t * symaddr_corect_concrete_addrs_values, 
+				      HExpr *    symaddr_correct_concrete_addrs_constraints,
+				      int        correct_concrete_addrs_count,
+				      int        data_length,
+				      char *     records
+				    )
+{
+    int i = 0;
+    int j = 0;
+  
+    HExpr    tmp_expr1 = NULL;
+    HExpr    tmp_expr2 = NULL;
+    HExpr    tmp_expr3 = vc_bvConstExprFromInt( hvc,
+						data_length * 8,
+						0
+					      );
+    HExpr    tmp_expr4 = NULL;
+
+    H_term_printf( "correct_concrete_addrs_count = %d\n",
+		   correct_concrete_addrs_count
+		 );
+
+    // orginally I introduced this tmp expr, wishing it won't be used ...
+    HExpr    rst_expr  = tmp_expr3;
+
+    uint32_t tmp_value = 0;
+    uint32_t tmp_mask  = 0; 
+
+    uint64_t tc_bitmap = 0;
+
+    for(i=0; i<correct_concrete_addrs_count; i=i+1)
+    {
+	tmp_expr1 = NULL;
+	// rst_expr  = tmp_expr3;
+
+	tmp_value = 0;
+
+	H_term_printf( "A SYM-ADDR-Reading candidate concrete address : 0x%x ---, size = %d ---,  ",
+		       uint32_t( symaddr_corect_concrete_addrs_values[i] ),
+		       data_length
+		     );
+
+        GetConcreteMemData( uint32_t( symaddr_corect_concrete_addrs_values[i] ), 
+			    data_length, 
+			    &tmp_value
+		          );
+
+	H_term_printf( "concrete value is 0x%x ---- ",
+		       tmp_value
+		     );
+
+	/* ---------------------------------------------------------------------------------------------------- */
+	tc_bitmap = HH_Query_TemuMemTaintStatus( uint32_t( symaddr_corect_concrete_addrs_values[i] ),
+					         data_length,
+					         (H_taint_record_t *)records
+					       );
+	if(tc_bitmap == 0)
+	{
+	    H_term_printf("concrete value !\n");
+
+	    tmp_expr1 = vc_bvConstExprFromInt( hvc,
+					       data_length * 8,
+					       tmp_value
+					     );
+	}
+	else
+	{
+	    H_term_printf("symbolic value !\n");
+
+	    for(j=0; j<data_length; j=j+1)
+	    {
+		tmp_mask = ( 1 << ( 8*(j + 1)
+				  )
+			   ) - 1;
+
+		tmp_mask = tmp_mask - ( ( 1 << ( 8*j)
+				        ) - 1
+				      );
+
+		if(tc_bitmap & (1 << j))
+		{		    
+		// symbolic byte !
+		    tmp_expr2 = (HExpr)( ( (H_taint_record_t *)( records + j * sizeof(H_taint_record_t)
+				         		       ) 
+					 )->h_expr
+				       );		    
+		}
+		else
+		{
+		// concrete byte !
+		    tmp_expr2 = vc_bvConstExprFromInt( hvc,
+						       8,
+						       ( ( tmp_value & tmp_mask ) >> ( j *8 )
+						       )
+						     );		    		    
+		}// end of if(tc_bitmap &)
+
+		if(tmp_expr1 == NULL)
+		{
+		    tmp_expr1 = tmp_expr2;
+		}
+		else
+		{
+		    tmp_expr1 = vc_bvConcatExpr( hvc,
+						 tmp_expr1,
+						 tmp_expr2
+					       );
+		}// end of if(tmp_expr3)
+
+	    }// end of for{j}
+
+	}// end of if(tc_bitmap)
+
+	H_term_printf("making a summary !\n");
+
+	/*
+	H_term_printf( "then-expr is %s\n",
+		       exprString(tmp_expr1)
+		     );
+	 */
+
+        H_term_printf( "then length is %d, else length is %d\n",
+		       vc_getBVLength( hvc,
+				       tmp_expr1
+				     ),
+		       vc_getBVLength( hvc,
+				       rst_expr
+				     )
+		     );
+	rst_expr = vc_iteExpr( hvc,
+			       symaddr_correct_concrete_addrs_constraints[i], // if
+			       tmp_expr1,				      // then
+			       rst_expr				      	      // else
+			     );
+
+
+
+	// H_term_printf("making a summary !\n");	
+	/* ---------------------------------------------------------------------------------------------------- */
+
+    }// end of for{i}
+            
+
+    return rst_expr;
+}// end of symaddr_reading_expr_formulate( )
+
+
+
+
+
+
+
+
+
+
+

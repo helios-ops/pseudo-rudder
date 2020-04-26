@@ -1,0 +1,51 @@
+Module tst_ReadFile_DEBUG.exe loaded in our monitored process's name space !
+Module Added!
+Hooking HHui_ReadFile_call( ) ---- eip -   40107c !
+ReadFile( ) cur eip = 0040107c
+ReadFile( ) input length = 1
+ReadFile( ) taint source introduction : H_FILE_source_1 ----- total length is 1
+!: eip=00401b6f test edx, edx
+!: eip=00401b71 jz 0x11
+my cjmp ! : 0
+ CJMP --- eip=00401b71 jz 0x11
+tainted origin for ZF bit : 0. 
+!: eip=00401b73 mov eax, dword ptr ss[ebp-0x250]
+!: eip=004023d2 mov dword ptr ss[ebp-0x4], edx
+!: eip=004023d5 mov eax, dword ptr ss[ebp-0x4]
+!: eip=004023d8 push eax
+!: eip=004023d9 mov ecx, dword ptr ss[ebp+0x8]
+!: eip=00402314 mov byte ptr ds[edx], al
+!: eip=00402316 movsx ecx, byte ptr ss[ebp+0x8]
+!: eip=0040231a and ecx, 0xff
+!: eip=00402320 mov dword ptr ss[ebp-0x4], ecx
+!: eip=00402323 mov edx, dword ptr ss[ebp+0xc]
+!: eip=00402349 jnz 0xb
+my cjmp ! : 0
+ CJMP --- eip=00402349 jnz 0xb
+tainted origin for ZF bit : 0. 
+!: eip=00402356 mov edx, dword ptr ss[ebp+0x10]
+!: eip=0040a448 mov byte ptr ss[ebp-0x41c], cl
+!: eip=0040a44e mov edx, dword ptr ss[ebp-0x4]
+!: eip=0040a45e cmp eax, 0xa
+!: eip=0040a461 jnz 0x1e
+my cjmp ! : 0
+ CJMP --- eip=0040a461 jnz 0x1e
+tainted origin for ZF bit : 0. 
+!: eip=0040a481 mov ecx, dword ptr ss[ebp-0x8]
+!: eip=0040a48a mov byte ptr ds[ecx], dl
+!: eip=0040a48c mov eax, dword ptr ss[ebp-0x8]
+!: eip=004010bf cmp eax, 0x61
+!: eip=004010c2 jnz 0xd
+my cjmp ! : 1
+ CJMP --- eip=004010c2 jnz 0xd
+tainted origin for ZF bit : 0. 
+!: eip=004010c4 push 0x42001c
+
+
+
+
+
+
+
+
+

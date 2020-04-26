@@ -1,0 +1,2 @@
+g++ IR_operation.cpp GetTemuData.cpp -I../.. -I../../apps -I../include -I/home/hhui/Experiments/BitBlaze/Exps/vine-1.0/VEX//pub -g -O2 -L. -L../src -L/home/hhui/Experiments/BitBlaze/Exps/vine-1.0/VEX/ -g -O2 -L../src -L/home/hhui/Experiments/BitBlaze/Exps/vine-1.0/VEX/ -shared -fPIC -o IR_op.so -lasmir -lvex -lbfd -liberty -lopcodes -liberty -lstp -Xlinker -rpath ./
+

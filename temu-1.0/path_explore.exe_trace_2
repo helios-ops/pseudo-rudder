@@ -1,0 +1,4 @@
+[tid:6fc]--path_explore.exe:0x4010e1 --- cmp dword ptr ss[ebp-0x94], 0x0 --- tainted
+[tid:6fc]--path_explore.exe:0x4010e8 --- jbe 0xf --- tainted
+[tid:6fc]--path_explore.exe:0x4010f9 --- cmp dword ptr ss[ebp-0x98], 0x0 --- tainted
+[tid:6fc]--path_explore.exe:0x401100 --- jbe 0xf --- tainted

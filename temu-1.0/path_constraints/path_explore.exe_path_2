@@ -1,0 +1,72 @@
+( LET let_k_0 = ( H_FILE_source_C:\Experiments\path_explore\a.txt__3 @ 
+		  ( H_FILE_source_C:\Experiments\path_explore\a.txt__2 @ 
+		    ( H_FILE_source_C:\Experiments\path_explore\a.txt__1 @ 
+		      H_FILE_source_C:\Experiments\path_explore\a.txt__0
+		    )
+		  )
+		),
+      let_k_1 = NOT( ( 0bin0000000000000000000000000000000 @ ( IF( NOT( IF( BVLT(let_k_0, 0hex00000000) )
+									THEN 0bin1
+									ELSE 0bin0
+									ENDIF[0:0] = 0bin0
+								      ) 
+								 )
+							       THEN 0bin1
+							       ELSE 0bin0
+							       ENDIF | 
+
+							       IF( NOT( IF( BVSUB( 32, 
+										   let_k_0, 
+										   0hex00000000
+										 ) = 0hex00000000
+									  )
+									THEN 0bin1
+									ELSE 0bin0
+									ENDIF[0:0] = 0bin0
+								      ) 
+								 )
+							       THEN 0bin1
+							       ELSE 0bin0
+							       ENDIF
+							     )
+		     )[0:0][0:0] = 0bin0
+		   ),
+      let_k_2 = ( H_FILE_source_C:\Experiments\path_explore\a.txt__7 @ 
+		  ( H_FILE_source_C:\Experiments\path_explore\a.txt__6 @ 
+		    ( H_FILE_source_C:\Experiments\path_explore\a.txt__5 @ 
+		      H_FILE_source_C:\Experiments\path_explore\a.txt__4
+		    )
+		  )
+		)
+  IN 
+      ( ( ( TRUE AND let_k_1 ) 
+	  AND let_k_1
+	) AND NOT( ( 0bin0000000000000000000000000000000 @ ( IF( NOT( IF( BVLT(let_k_2, 0hex00000000) )
+								      THEN 0bin1
+								      ELSE 0bin0
+								      ENDIF[0:0] = 0bin0
+								    ) 
+							       )
+							     THEN 0bin1
+							     ELSE 0bin0
+							     ENDIF | 
+
+							     IF( NOT( IF( BVSUB( 32, 
+										 let_k_2, 
+										 0hex00000000
+									       ) = 0hex00000000
+									)
+								      THEN 0bin1
+								      ELSE 0bin0
+								      ENDIF[0:0] = 0bin0
+								    ) 
+							       )
+							     THEN 0bin1
+							     ELSE 0bin0
+							     ENDIF
+							    )
+		    )[0:0][0:0] = 0bin0
+		  ) 
+
+      )
+)  

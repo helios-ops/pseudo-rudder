@@ -1,0 +1,5 @@
+ sudo ./tracecap/temu -snapshot -kernel-kqemu -hda WINXPSP3 -m 512 -net nic,vlan=0 -net tap,vlan=0,script=./HH_ip_up -monitor stdio
+
+
+
+

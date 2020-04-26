@@ -1,0 +1,39 @@
+(LET let_k_0 = BVSX(H_FILE_source_C:\Experiments\tst_exe_dll_2\a.txt__0,32)
+,
+let_k_1 = (let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+,
+let_k_2 = BVSUB(32, 
+let_k_1, 
+0hex00000031)
+ IN 
+(TRUE AND NOT(NOT((0bin0000000000000000000000000000000 @ BVXOR(IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ let_k_2[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF,IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ (BVXOR(let_k_1,0hex00000031)
+ & BVXOR(let_k_1,let_k_2)
+)[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+)
+[0:0][0:0] = 0bin0
+) 
+) 
+
+))  

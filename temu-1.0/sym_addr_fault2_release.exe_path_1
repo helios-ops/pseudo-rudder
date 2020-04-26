@@ -1,0 +1,111 @@
+(LET let_k_0 = BVSX(0hex00,32)
+,
+let_k_1 = (let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+,
+let_k_2 = BVSUB(32, 
+let_k_1, 
+0hex0000000A)
+ IN 
+(TRUE AND NOT(NOT((0bin0000000000000000000000000000000 @ BVXOR(IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ let_k_2[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF,IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ (BVXOR(let_k_1,0hex0000000A)
+ & BVXOR(let_k_1,let_k_2)
+)[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+)
+[0:0][0:0] = 0bin0
+) 
+) 
+
+))  0250000)
+
+) OR ((BVGE(let_k_1,0hex00250000)
+ AND BVLE(let_k_1,0hex00260000)
+
+) OR ((BVGE(let_k_1,0hex00260000)
+ AND BVLE(let_k_1,0hex00276000)
+
+) OR ((BVGE(let_k_1,0hex00280000)
+ AND BVLE(let_k_1,0hex002BD000)
+
+) OR ((BVGE(let_k_1,0hex002C0000)
+ AND BVLE(let_k_1,0hex00301000)
+
+) OR ((BVGE(let_k_1,0hex00310000)
+ AND BVLE(let_k_1,0hex00316000)
+
+) OR ((BVGE(let_k_1,0hex00320000)
+ AND BVLE(let_k_1,0hex00361000)
+
+) OR ((BVGE(let_k_1,0hex00370000)
+ AND BVLE(let_k_1,0hex00380000)
+
+) OR (BVGE(let_k_1,0hex00380000)
+ AND BVLE(let_k_1,0hex00383000)
+
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+) OR (((BVGE(let_k_1,0hex7C920000)
+ AND BVLE(let_k_1,0hex7C9B4000)
+
+) OR ((BVGE(let_k_1,0hex7C800000)
+ AND BVLE(let_k_1,0hex7C91C000)
+
+) OR (BVGE(let_k_1,0hex00410000)
+ AND BVLE(let_k_1,0hex00510000)
+
+)
+)
+) OR (((BVGE(let_k_1,0hex7FFA0000)
+ AND BVLE(let_k_1,0hex7FFD3000)
+
+) OR (BVGE(let_k_1,0hex7F6F0000)
+ AND BVLE(let_k_1,0hex7F7F0000)
+
+)
+) OR ((BVGE(let_k_1,0hex7FFD4000)
+ AND BVLE(let_k_1,0hex7FFD5000)
+
+) OR (BVGE(let_k_1,0hex7FFDF000)
+ AND BVLE(let_k_1,0hex7FFE0000)
+
+)
+)
+)
+)
+)) 
+ IN 
+((let_k_2 AND TRUE
+) AND let_k_2
+))  

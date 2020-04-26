@@ -1,0 +1,23 @@
+(LET let_k_0 = BVSX(H_FILE_source_C:\Experiments\divide_sym\a.txt__0,32)
+ IN 
+(TRUE AND NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(BVSUB(32, 
+(let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+, 
+0hex00000031)
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+
+))  

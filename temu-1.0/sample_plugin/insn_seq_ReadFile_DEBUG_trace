@@ -1,0 +1,80 @@
+Module tst_ReadFile_DEBUG.exe loaded in our monitored process's name space !
+Module Added!
+Hooking HHui_ReadFile_call( ) ---- eip -   40107c !
+ReadFile( ) cur eip = 0040107c
+ReadFile( ) input length = 1
+ReadFile( ) taint source introduction : H_FILE_source_1 ----- total length is 1
+ReadFile hooking : hookapi_remove_hook( ) 
+!: eip=00401b6c movsx edx, byte ptr ds[ecx], instruction length = 3 
+R_EDX =        61, size = 4
+
+!: eip=00401b6f test edx, edx, instruction length = 2 
+No concrete dst values yet !
+
+!: eip=00401b71 jz 0x11, instruction length = 2 
+No concrete dst values yet !
+
+!: eip=004023cf movsx edx, byte ptr ds[ecx], instruction length = 3 
+R_EDX =        61, size = 4
+
+!: eip=004023d2 mov dword ptr ss[ebp-0x4], edx, instruction length = 3 
+[0x  12f798] =       61, size = 4
+
+!: eip=004023d5 mov eax, dword ptr ss[ebp-0x4], instruction length = 3 
+R_EAX =        61, size = 4
+
+!: eip=004023d8 push eax, instruction length = 1 
+[0x  12f78c] =       61, size = 4
+
+!: eip=00402311 mov al, byte ptr ss[ebp+0x8], instruction length = 3 
+R_AL =        61, size = 1
+
+!: eip=00402314 mov byte ptr ds[edx], al, instruction length = 2 
+[0x  3d51c0] =       61, size = 1
+
+!: eip=00402316 movsx ecx, byte ptr ss[ebp+0x8], instruction length = 4 
+R_ECX =        61, size = 4
+
+!: eip=0040231a and ecx, 0xff, instruction length = 6 
+No concrete dst values yet !
+
+!: eip=00402320 mov dword ptr ss[ebp-0x4], ecx, instruction length = 3 
+[0x  12f780] =       61, size = 4
+
+!: eip=00402345 cmp dword ptr ss[ebp-0x4], 0xff, instruction length = 4 
+No concrete dst values yet !
+
+!: eip=00402349 jnz 0xb, instruction length = 2 
+No concrete dst values yet !
+
+!: eip=0040a446 mov cl, byte ptr ds[eax], instruction length = 2 
+R_CL =        61, size = 1
+
+!: eip=0040a448 mov byte ptr ss[ebp-0x41c], cl, instruction length = 6 
+[0x  12f614] =       61, size = 1
+
+!: eip=0040a457 movsx eax, byte ptr ss[ebp-0x41c], instruction length = 7 
+R_EAX =        61, size = 4
+
+!: eip=0040a45e cmp eax, 0xa, instruction length = 3 
+No concrete dst values yet !
+
+!: eip=0040a461 jnz 0x1e, instruction length = 2 
+No concrete dst values yet !
+
+!: eip=0040a484 mov dl, byte ptr ss[ebp-0x41c], instruction length = 6 
+R_DL =        61, size = 1
+
+!: eip=0040a48a mov byte ptr ds[ecx], dl, instruction length = 2 
+[0x  12f61c] =       61, size = 1
+
+!: eip=004010b8 movsx eax, byte ptr ss[ebp-0x48c], instruction length = 7 
+R_EAX =        61, size = 4
+
+!: eip=004010bf cmp eax, 0x61, instruction length = 3 
+No concrete dst values yet !
+
+!: eip=004010c2 jnz 0xd, instruction length = 2 
+No concrete dst values yet !
+
+

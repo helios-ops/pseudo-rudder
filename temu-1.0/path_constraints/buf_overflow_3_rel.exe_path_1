@@ -1,0 +1,21 @@
+(TRUE AND NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(BVSUB(32, 
+(H_FILE_source_C:\Experiments\buf_overflow_3\buf_overflow_3_rel\a.txt__3 @ (H_FILE_source_C:\Experiments\buf_overflow_3\buf_overflow_3_rel\a.txt__2 @ (H_FILE_source_C:\Experiments\buf_overflow_3\buf_overflow_3_rel\a.txt__1 @ H_FILE_source_C:\Experiments\buf_overflow_3\buf_overflow_3_rel\a.txt__0)
+)
+)
+, 
+0hex00000001)
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+
+) 

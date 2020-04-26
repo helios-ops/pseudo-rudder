@@ -1,0 +1,16 @@
+/* 
+the files under this directory contain testcases generated during IR-SYMEXE for each individual instruction,
+following the naming convention as 'testcase_%d_%d'
+
+the first '%d' denotes 'err_id', which is defined as the following:     
+   0 --- sym-addr write out-of-range 
+   1 --- sym-addr write invalid access
+   2 --- sym-addr write stack-eip overwritten
+ 
+   3 --- sym-addr read out-of-range
+   4 --- sym-addr read invalid access	       
+
+   5 --- divide by 0
+
+the second '%d' denotes every instance for each error kind.
+*/  

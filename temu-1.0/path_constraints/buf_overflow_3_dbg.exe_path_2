@@ -1,0 +1,76 @@
+(LET let_k_0 = (H_FILE_source_C:\Experiments\buf_overflow_3\buf_overflow_3_dbg\a.txt__7 @ (H_FILE_source_C:\Experiments\buf_overflow_3\buf_overflow_3_dbg\a.txt__6 @ (H_FILE_source_C:\Experiments\buf_overflow_3\buf_overflow_3_dbg\a.txt__5 @ H_FILE_source_C:\Experiments\buf_overflow_3\buf_overflow_3_dbg\a.txt__4)
+)
+)
+,
+let_k_1 = BVXOR((let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+,0hexFFFFFFFF)
+,
+let_k_2 = (let_k_0[31:24] @ (let_k_0[23:16] @ (let_k_0[15:8] @ let_k_0[7:0])
+)
+)
+,
+let_k_3 = BVPLUS(32, 
+let_k_2, 
+0hex7EFEFEFF)
+,
+let_k_4 = BVXOR((let_k_1[31:24] @ (let_k_1[23:16] @ (let_k_1[15:8] @ let_k_1[7:0])
+)
+)
+,(let_k_3[31:24] @ (let_k_3[23:16] @ (let_k_3[15:8] @ let_k_3[7:0])
+)
+)
+)
+ IN 
+(((TRUE AND NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(BVSUB(32, 
+(H_FILE_source_C:\Experiments\buf_overflow_3\buf_overflow_3_dbg\a.txt__3 @ (H_FILE_source_C:\Experiments\buf_overflow_3\buf_overflow_3_dbg\a.txt__2 @ (H_FILE_source_C:\Experiments\buf_overflow_3\buf_overflow_3_dbg\a.txt__1 @ H_FILE_source_C:\Experiments\buf_overflow_3\buf_overflow_3_dbg\a.txt__0)
+)
+)
+, 
+0hex00000001)
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+
+) AND NOT(NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF(((let_k_4[31:24] @ (let_k_4[23:16] @ (let_k_4[15:8] @ let_k_4[7:0])
+)
+)
+ & 0hex81010100) = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+) 
+
+) AND NOT((0bin0000000000000000000000000000000 @ IF(NOT(IF((0hex000000 @ let_k_2[7:0])
+ = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+[0:0][0:0] = 0bin0
+) 
+
+))  

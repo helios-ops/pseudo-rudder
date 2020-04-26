@@ -1,0 +1,348 @@
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 14]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cfa5111: introduce taint [0 --- 4]
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+[tid:304]--quartz.dll:0x7cfa5130 --- xor bl, byte ptr ds[eax+edi*1] --- tainted
+[tid:304]--quartz.dll:0x7cfa5133 --- test byte ptr ds[esi+eax*1], bl --- tainted
+[tid:304]--quartz.dll:0x7cfa5136 --- jz 0x15 --- tainted
+ReadFile( ) called at 0x7cf877e1: introduce taint [0 --- 100]
+[tid:304]--quartz.dll:0x7d0623b3 --- cmp dword ptr ds[edx], 0x46464952 --- tainted
+[tid:304]--quartz.dll:0x7d0623ba --- jnz 0x62 --- tainted
+[tid:304]--quartz.dll:0x7d062b97 --- cmp dword ptr ds[esi], 0x6468544d --- tainted
+[tid:304]--quartz.dll:0x7d062ba0 --- jnz 0x33c --- tainted
+[tid:304]--quartz.dll:0x7d062ba6 --- mov edx, dword ptr ds[esi+0x4] --- tainted
+[tid:304]--quartz.dll:0x7d062ba9 --- mov ecx, edx --- tainted
+[tid:304]--quartz.dll:0x7d062bab --- mov dword ptr ss[ebp-0x1c], edx --- tainted
+[tid:304]--quartz.dll:0x7d062bae --- shl ecx, 0x10 --- tainted
+[tid:304]--quartz.dll:0x7d062bb1 --- and edx, 0xff00 --- tainted
+[tid:304]--quartz.dll:0x7d062bb7 --- or ecx, edx --- tainted
+[tid:304]--quartz.dll:0x7d062bb9 --- movzx edx, byte ptr ds[esi+0x7] --- tainted
+[tid:304]--quartz.dll:0x7d062bbd --- shl ecx, 0x8 --- tainted
+[tid:304]--quartz.dll:0x7d062bc0 --- or ecx, edx --- tainted
+[tid:304]--quartz.dll:0x7d062bc4 --- mov invalid, byte ptr ss[ebp-0x1a] --- tainted
+[tid:304]--quartz.dll:0x7d062bc7 --- or ecx, edx --- tainted
+[tid:304]--quartz.dll:0x7d062bc9 --- cmp ecx, 0x6 --- tainted
+[tid:304]--quartz.dll:0x7d062bcc --- jb 0x310 --- tainted
+[tid:304]--quartz.dll:0x7d062bd2 --- cmp ecx, dword ptr ss[ebp-0x18] --- tainted
+[tid:304]--quartz.dll:0x7d062bd5 --- jnbe 0x307 --- tainted
+[tid:304]--quartz.dll:0x7d062bdb --- sub dword ptr ss[ebp-0x18], ecx --- tainted
+[tid:304]--quartz.dll:0x7d062be2 --- add ebx, ecx --- tainted
+[tid:304]--quartz.dll:0x7d062be4 --- movzx ecx, word ptr ds[esi] --- tainted
+[tid:304]--quartz.dll:0x7d062be7 --- mov invalid, cl --- tainted
+[tid:304]--quartz.dll:0x7d062be9 --- shr ecx, 0x8 --- tainted
+[tid:304]--quartz.dll:0x7d062bec --- or edx, ecx --- tainted
+[tid:304]--quartz.dll:0x7d062bee --- mov dword ptr ds[eax+0x14], edx --- tainted
+[tid:304]--quartz.dll:0x7d062bf1 --- movzx ecx, word ptr ds[esi+0x2] --- tainted
+[tid:304]--quartz.dll:0x7d062bf7 --- mov invalid, cl --- tainted
+[tid:304]--quartz.dll:0x7d062bf9 --- shr ecx, 0x8 --- tainted
+[tid:304]--quartz.dll:0x7d062bfc --- or edx, ecx --- tainted
+[tid:304]--quartz.dll:0x7d062bfe --- mov dword ptr ds[eax+0x18], edx --- tainted
+[tid:304]--quartz.dll:0x7d062c01 --- movzx ecx, word ptr ds[esi+0x4] --- tainted
+[tid:304]--quartz.dll:0x7d062c07 --- mov invalid, cl --- tainted
+[tid:304]--quartz.dll:0x7d062c09 --- shr ecx, 0x8 --- tainted
+[tid:304]--quartz.dll:0x7d062c0c --- or edx, ecx --- tainted
+[tid:304]--quartz.dll:0x7d062c0e --- cmp dword ptr ds[eax+0x18], 0x6d6 --- tainted
+[tid:304]--quartz.dll:0x7d062c15 --- mov dword ptr ds[eax+0x1c], edx --- tainted
+[tid:304]--quartz.dll:0x7d062c18 --- jnbe 0x2c4 --- tainted
+[tid:304]--quartz.dll:0x7d062c20 --- mov cx, word ptr ds[eax+0x18] --- tainted
+[tid:304]--quartz.dll:0x7d062c24 --- imul cx, cx, 0x24 --- tainted
+[tid:304]--quartz.dll:0x7d062c2a --- add ecx, 0x9e0 --- tainted
+[tid:304]--quartz.dll:0x7d062c30 --- movzx ecx, cx --- tainted
+[tid:304]--quartz.dll:0x7d062c33 --- push ecx --- tainted
+[tid:304]--quartz.dll:0x7d062c4d --- cmp dword ptr ds[esi+0x18], ecx --- tainted
+[tid:304]--quartz.dll:0x7d062c53 --- jbe 0x6f --- tainted
+[tid:304]--quartz.dll:0x7d062c5b --- cmp dword ptr ss[ebp-0x18], 0x8 --- tainted
+[tid:304]--quartz.dll:0x7d062c5f --- jb 0x27d --- tainted
+[tid:304]--quartz.dll:0x7d062c65 --- sub dword ptr ss[ebp-0x18], 0x8 --- tainted
+[tid:304]--quartz.dll:0x7d062c6e --- cmp dword ptr ds[edx], 0x6b72544d --- tainted
+[tid:304]--quartz.dll:0x7d062c74 --- jnz 0x268 --- tainted
+[tid:304]--quartz.dll:0x7d062c81 --- mov ecx, dword ptr ds[edx+0x4] --- tainted
+[tid:304]--quartz.dll:0x7d062c84 --- mov eax, ecx --- tainted
+[tid:304]--quartz.dll:0x7d062c86 --- mov dword ptr ss[ebp-0x20], ecx --- tainted
+[tid:304]--quartz.dll:0x7d062c89 --- shl eax, 0x10 --- tainted
+[tid:304]--quartz.dll:0x7d062c8c --- and ecx, 0xff00 --- tainted
+[tid:304]--quartz.dll:0x7d062c92 --- or eax, ecx --- tainted
+[tid:304]--quartz.dll:0x7d062c96 --- mov invalid, byte ptr ss[ebp-0x1e] --- tainted
+[tid:304]--quartz.dll:0x7d062c99 --- shl eax, 0x8 --- tainted
+[tid:304]--quartz.dll:0x7d062c9c --- or eax, ecx --- tainted
+[tid:304]--quartz.dll:0x7d062c9e --- movzx ecx, byte ptr ds[edx+0x7] --- tainted
+[tid:304]--quartz.dll:0x7d062ca2 --- or eax, ecx --- tainted
+[tid:304]--quartz.dll:0x7d062ca4 --- cmp eax, dword ptr ss[ebp-0x18] --- tainted
+[tid:304]--quartz.dll:0x7d062ca7 --- mov dword ptr ds[edi], eax --- tainted
+[tid:304]--quartz.dll:0x7d062ca9 --- jnbe 0x233 --- tainted
+[tid:304]--quartz.dll:0x7d062caf --- sub dword ptr ss[ebp-0x18], eax --- tainted
+[tid:304]--quartz.dll:0x7d062cb2 --- add ebx, eax --- tainted
+[tid:304]--quartz.dll:0x7d062cbd --- cmp eax, dword ptr ds[esi+0x18] --- tainted
+[tid:304]--quartz.dll:0x7d062cc0 --- jb 0xffffff99 --- tainted
+[tid:304]--quartz.dll:0x7d062cc4 --- mov edx, dword ptr ds[esi+0x18] --- tainted
+[tid:304]--quartz.dll:0x7d062ccb --- cmp edx, ecx --- tainted
+[tid:304]--quartz.dll:0x7d062cd9 --- jz 0x20 --- tainted
+[tid:304]--quartz.dll:0x7d062cdb --- mov edi, dword ptr ds[eax+0x1c] --- tainted
+[tid:304]--quartz.dll:0x7d062cde --- mov dword ptr ds[eax+0xc], edi --- tainted
+[tid:304]--quartz.dll:0x7d062cf8 --- dec edx --- tainted
+[tid:304]--quartz.dll:0x7d062cf9 --- jnz 0xffffffe0 --- tainted
+[tid:304]--quartz.dll:0x7d062958 --- push ebx --- tainted
+[tid:304]--quartz.dll:0x7d062972 --- mov ecx, dword ptr ds[ebx+0x18] --- tainted
+[tid:304]--quartz.dll:0x7d06297b --- test ecx, ecx --- tainted
+[tid:304]--quartz.dll:0x7d062986 --- mov dword ptr ss[ebp-0x4], ecx --- tainted
+[tid:304]--quartz.dll:0x7d062989 --- jz 0x1bf --- tainted
+[tid:304]--quartz.dll:0x7d06298f --- dec dword ptr ss[ebp-0x4] --- tainted
+[tid:304]--quartz.dll:0x7d06299c --- push dword ptr ds[eax+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062924 --- cmp dword ptr ss[ebp+0xc], eax --- tainted
+[tid:304]--quartz.dll:0x7d062927 --- jz 0x1b --- tainted
+[tid:304]--quartz.dll:0x7d062929 --- mov dl, byte ptr ds[esi] --- tainted
+[tid:304]--quartz.dll:0x7d06292d --- mov al, dl --- tainted
+[tid:304]--quartz.dll:0x7d062930 --- dec dword ptr ss[ebp+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062937 --- and eax, 0x7f --- tainted
+[tid:304]--quartz.dll:0x7d06293a --- or eax, ebx --- tainted
+[tid:304]--quartz.dll:0x7d06293c --- test dl, dl --- tainted
+[tid:304]--quartz.dll:0x7d06293e --- mov dword ptr ds[ecx], eax --- tainted
+[tid:304]--quartz.dll:0x7d062940 --- js 0xffffffe0 --- tainted
+[tid:304]--quartz.dll:0x7d0629b8 --- add eax, dword ptr ss[ebp-0xc] --- tainted
+[tid:304]--quartz.dll:0x7d0629bb --- cmp eax, dword ptr ss[ebp-0x8] --- tainted
+[tid:304]--quartz.dll:0x7d0629be --- jnb 0x6 --- tainted
+[tid:304]--quartz.dll:0x7d0629c3 --- mov dword ptr ss[ebp-0x8], eax --- tainted
+[tid:304]--quartz.dll:0x7d0629cc --- cmp dword ptr ss[ebp-0x4], 0x0 --- tainted
+[tid:304]--quartz.dll:0x7d0629d3 --- jnz 0xffffffba --- tainted
+[tid:304]--quartz.dll:0x7d0629e0 --- add eax, dword ptr ss[ebp-0x8] --- tainted
+[tid:304]--quartz.dll:0x7d0629e3 --- cmp eax, dword ptr ss[ebp+0x10] --- tainted
+[tid:304]--quartz.dll:0x7d0629e6 --- jnbe 0x167 --- tainted
+[tid:304]--quartz.dll:0x7d0629ec --- mov eax, dword ptr ds[esi+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d0629f6 --- push eax --- tainted
+[tid:304]--quartz.dll:0x7d062924 --- cmp dword ptr ss[ebp+0xc], eax --- tainted
+[tid:304]--quartz.dll:0x7d062927 --- jz 0x1b --- tainted
+[tid:304]--quartz.dll:0x7d062929 --- mov dl, byte ptr ds[esi] --- tainted
+[tid:304]--quartz.dll:0x7d06292d --- mov al, dl --- tainted
+[tid:304]--quartz.dll:0x7d062930 --- dec dword ptr ss[ebp+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062937 --- and eax, 0x7f --- tainted
+[tid:304]--quartz.dll:0x7d06293a --- or eax, ebx --- tainted
+[tid:304]--quartz.dll:0x7d06293c --- test dl, dl --- tainted
+[tid:304]--quartz.dll:0x7d06293e --- mov dword ptr ds[ecx], eax --- tainted
+[tid:304]--quartz.dll:0x7d062940 --- js 0xffffffe0 --- tainted
+[tid:304]--quartz.dll:0x7d0629fd --- mov ecx, dword ptr ds[esi+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062a07 --- sub ecx, eax --- tainted
+[tid:304]--quartz.dll:0x7d062a0a --- cmp ecx, ebx --- tainted
+[tid:304]--quartz.dll:0x7d062a0c --- mov dword ptr ds[esi+0xc], ecx --- tainted
+[tid:304]--quartz.dll:0x7d062a0f --- jb 0x134 --- tainted
+[tid:304]--quartz.dll:0x7d062a15 --- mov eax, dword ptr ss[ebp-0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062a18 --- add dword ptr ds[esi+0x8], eax --- tainted
+[tid:304]--quartz.dll:0x7d062a1b --- mov eax, dword ptr ds[esi+0x8] --- tainted
+[tid:304]--quartz.dll:0x7d062a21 --- sub eax, dword ptr ds[ecx+0x8] --- tainted
+[tid:304]--quartz.dll:0x7d062a24 --- add dword ptr ds[edi], eax --- tainted
+[tid:304]--quartz.dll:0x7d062a29 --- mov al, byte ptr ds[ecx] --- tainted
+[tid:304]--quartz.dll:0x7d062a2c --- cmp al, 0x80 --- tainted
+[tid:304]--quartz.dll:0x7d062a31 --- jnb 0x3b --- tainted
+[tid:304]--quartz.dll:0x7d062a6e --- cmp al, 0xf0 --- tainted
+[tid:304]--quartz.dll:0x7d062a70 --- jnb 0x32 --- tainted
+[tid:304]--quartz.dll:0x7d062aa4 --- cmp al, 0xff --- tainted
+[tid:304]--quartz.dll:0x7d062aa6 --- jnz 0x1f --- tainted
+[tid:304]--quartz.dll:0x7d062aa8 --- mov byte ptr ds[edi+0xc], al --- tainted
+[tid:304]--quartz.dll:0x7d062aae --- mov al, byte ptr ds[eax] --- tainted
+[tid:304]--quartz.dll:0x7d062ad9 --- mov eax, dword ptr ds[esi+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062ae3 --- add eax, 0xfe --- tainted
+[tid:304]--quartz.dll:0x7d062ae6 --- push eax --- tainted
+[tid:304]--quartz.dll:0x7d062924 --- cmp dword ptr ss[ebp+0xc], eax --- tainted
+[tid:304]--quartz.dll:0x7d062927 --- jz 0x1b --- tainted
+[tid:304]--quartz.dll:0x7d062929 --- mov dl, byte ptr ds[esi] --- tainted
+[tid:304]--quartz.dll:0x7d06292d --- mov al, dl --- tainted
+[tid:304]--quartz.dll:0x7d062930 --- dec dword ptr ss[ebp+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062937 --- and eax, 0x7f --- tainted
+[tid:304]--quartz.dll:0x7d06293a --- or eax, ebx --- tainted
+[tid:304]--quartz.dll:0x7d06293c --- test dl, dl --- tainted
+[tid:304]--quartz.dll:0x7d06293e --- mov dword ptr ds[ecx], eax --- tainted
+[tid:304]--quartz.dll:0x7d062940 --- js 0xffffffe0 --- tainted
+[tid:304]--quartz.dll:0x7d062af8 --- mov eax, dword ptr ss[ebp-0x10] --- tainted
+[tid:304]--quartz.dll:0x7d062afb --- add ecx, eax --- tainted
+[tid:304]--quartz.dll:0x7d062afd --- cmp ecx, eax --- tainted
+[tid:304]--quartz.dll:0x7d062b02 --- jb 0x45 --- tainted
+[tid:304]--quartz.dll:0x7d062b04 --- cmp ecx, dword ptr ds[esi+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062b07 --- jnbe 0x40 --- tainted
+[tid:304]--quartz.dll:0x7d062b09 --- mov dword ptr ds[edi+0x4], eax --- tainted
+[tid:304]--quartz.dll:0x7d062b12 --- add dword ptr ds[esi+0x10], eax --- tainted
+[tid:304]--quartz.dll:0x7d062b1b --- mov eax, dword ptr ds[esi+0x8] --- tainted
+[tid:304]--quartz.dll:0x7d062b21 --- mov dword ptr ds[edx+0x8], eax --- tainted
+[tid:304]--quartz.dll:0x7d062b24 --- sub dword ptr ds[esi+0xc], ecx --- tainted
+[tid:304]--quartz.dll:0x7d062b29 --- mov cl, byte ptr ds[edi+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062b2c --- cmp cl, 0xf0 --- tainted
+[tid:304]--quartz.dll:0x7d062b2f --- jnb 0x26 --- tainted
+[tid:304]--quartz.dll:0x7d062b5b --- pop ebx --- tainted
+[tid:304]--quartz.dll:0x7d062d0c --- mov edx, dword ptr ss[ebp-0x8] --- tainted
+[tid:304]--quartz.dll:0x7d062d0f --- cmp dl, 0xf0 --- tainted
+[tid:304]--quartz.dll:0x7d062d12 --- jz 0x1c --- tainted
+[tid:304]--quartz.dll:0x7d062d16 --- mov cl, dl --- tainted
+[tid:304]--quartz.dll:0x7d062d1b --- and ecx, 0xf --- tainted
+[tid:304]--quartz.dll:0x7d062d1e --- shl eax, cl --- tainted
+[tid:304]--quartz.dll:0x7d062d20 --- mov cl, dl --- tainted
+[tid:304]--quartz.dll:0x7d062d22 --- and cl, 0xf0 --- tainted
+[tid:304]--quartz.dll:0x7d062d25 --- or dword ptr ss[ebp-0x18], eax --- tainted
+[tid:304]--quartz.dll:0x7d062d28 --- cmp cl, 0x80 --- tainted
+[tid:304]--quartz.dll:0x7d062d2b --- jnz 0x3 --- tainted
+[tid:304]--quartz.dll:0x7d062d30 --- cmp dl, 0xff --- tainted
+[tid:304]--quartz.dll:0x7d062d33 --- jnz 0xe2 --- tainted
+[tid:304]--quartz.dll:0x7d062d39 --- movzx eax, dh --- tainted
+[tid:304]--quartz.dll:0x7d062d3c --- dec eax --- tainted
+[tid:304]--quartz.dll:0x7d062d3d --- dec eax --- tainted
+[tid:304]--quartz.dll:0x7d062d3e --- jz 0x98 --- tainted
+[tid:304]--quartz.dll:0x7d062d44 --- dec eax --- tainted
+[tid:304]--quartz.dll:0x7d062d45 --- jz 0x56 --- tainted
+[tid:304]--quartz.dll:0x7d062d9d --- mov edi, dword ptr ss[ebp-0x10] --- tainted
+[tid:304]--quartz.dll:0x7d062da0 --- lea ebx, ptr [edi+0x1] --- tainted
+[tid:304]--quartz.dll:0x7d062da3 --- test ebx, ebx --- tainted
+[tid:304]--quartz.dll:0x7d062da5 --- jz 0xc5 --- tainted
+[tid:304]--quartz.dll:0x7d062db9 --- push ebx --- tainted
+[tid:304]--quartz.dll:0x7cfc9caf --- rep movsd  --- tainted
+[tid:304]--quartz.dll:0x7cfc9caf --- rep movsd  --- tainted
+[tid:304]--quartz.dll:0x7d062972 --- mov ecx, dword ptr ds[ebx+0x18] --- tainted
+[tid:304]--quartz.dll:0x7d06297b --- test ecx, ecx --- tainted
+[tid:304]--quartz.dll:0x7d062986 --- mov dword ptr ss[ebp-0x4], ecx --- tainted
+[tid:304]--quartz.dll:0x7d062989 --- jz 0x1bf --- tainted
+[tid:304]--quartz.dll:0x7d06298f --- dec dword ptr ss[ebp-0x4] --- tainted
+[tid:304]--quartz.dll:0x7d06299c --- push dword ptr ds[eax+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d06299f --- push dword ptr ds[eax+0x10] --- tainted
+[tid:304]--quartz.dll:0x7d06291a --- mov esi, dword ptr ss[ebp+0x8] --- tainted
+[tid:304]--quartz.dll:0x7d062924 --- cmp dword ptr ss[ebp+0xc], eax --- tainted
+[tid:304]--quartz.dll:0x7d062927 --- jz 0x1b --- tainted
+[tid:304]--quartz.dll:0x7d062929 --- mov dl, byte ptr ds[esi] --- tainted
+[tid:304]--quartz.dll:0x7d06292d --- mov al, dl --- tainted
+[tid:304]--quartz.dll:0x7d06292f --- inc esi --- tainted
+[tid:304]--quartz.dll:0x7d062930 --- dec dword ptr ss[ebp+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062937 --- and eax, 0x7f --- tainted
+[tid:304]--quartz.dll:0x7d06293a --- or eax, ebx --- tainted
+[tid:304]--quartz.dll:0x7d06293c --- test dl, dl --- tainted
+[tid:304]--quartz.dll:0x7d06293e --- mov dword ptr ds[ecx], eax --- tainted
+[tid:304]--quartz.dll:0x7d062940 --- js 0xffffffe0 --- tainted
+[tid:304]--quartz.dll:0x7d0629b2 --- mov eax, dword ptr ds[eax+0x8] --- tainted
+[tid:304]--quartz.dll:0x7d0629b5 --- sub eax, dword ptr ds[ebx+0x8] --- tainted
+[tid:304]--quartz.dll:0x7d0629b8 --- add eax, dword ptr ss[ebp-0xc] --- tainted
+[tid:304]--quartz.dll:0x7d0629bb --- cmp eax, dword ptr ss[ebp-0x8] --- tainted
+[tid:304]--quartz.dll:0x7d0629be --- jnb 0x6 --- tainted
+[tid:304]--quartz.dll:0x7d0629c3 --- mov dword ptr ss[ebp-0x8], eax --- tainted
+[tid:304]--quartz.dll:0x7d0629cc --- cmp dword ptr ss[ebp-0x4], 0x0 --- tainted
+[tid:304]--quartz.dll:0x7d0629d3 --- jnz 0xffffffba --- tainted
+[tid:304]--quartz.dll:0x7d0629dd --- mov eax, dword ptr ds[ebx+0x8] --- tainted
+[tid:304]--quartz.dll:0x7d0629e0 --- add eax, dword ptr ss[ebp-0x8] --- tainted
+[tid:304]--quartz.dll:0x7d0629e3 --- cmp eax, dword ptr ss[ebp+0x10] --- tainted
+[tid:304]--quartz.dll:0x7d0629e6 --- jnbe 0x167 --- tainted
+[tid:304]--quartz.dll:0x7d0629ec --- mov eax, dword ptr ds[esi+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d0629ef --- mov ebx, dword ptr ds[esi+0x10] --- tainted
+[tid:304]--quartz.dll:0x7d0629f6 --- push eax --- tainted
+[tid:304]--quartz.dll:0x7d0629f7 --- push ebx --- tainted
+[tid:304]--quartz.dll:0x7d062918 --- push ebx --- tainted
+[tid:304]--quartz.dll:0x7d06291a --- mov esi, dword ptr ss[ebp+0x8] --- tainted
+[tid:304]--quartz.dll:0x7d062924 --- cmp dword ptr ss[ebp+0xc], eax --- tainted
+[tid:304]--quartz.dll:0x7d062927 --- jz 0x1b --- tainted
+[tid:304]--quartz.dll:0x7d062929 --- mov dl, byte ptr ds[esi] --- tainted
+[tid:304]--quartz.dll:0x7d06292d --- mov al, dl --- tainted
+[tid:304]--quartz.dll:0x7d06292f --- inc esi --- tainted
+[tid:304]--quartz.dll:0x7d062930 --- dec dword ptr ss[ebp+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062937 --- and eax, 0x7f --- tainted
+[tid:304]--quartz.dll:0x7d06293a --- or eax, ebx --- tainted
+[tid:304]--quartz.dll:0x7d06293c --- test dl, dl --- tainted
+[tid:304]--quartz.dll:0x7d06293e --- mov dword ptr ds[ecx], eax --- tainted
+[tid:304]--quartz.dll:0x7d062940 --- js 0xffffffe0 --- tainted
+[tid:304]--quartz.dll:0x7d062946 --- pop ebx --- tainted
+[tid:304]--quartz.dll:0x7d0629fd --- mov ecx, dword ptr ds[esi+0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062a00 --- add ebx, eax --- tainted
+[tid:304]--quartz.dll:0x7d062a04 --- mov dword ptr ds[esi+0x10], ebx --- tainted
+[tid:304]--quartz.dll:0x7d062a07 --- sub ecx, eax --- tainted
+[tid:304]--quartz.dll:0x7d062a0a --- cmp ecx, ebx --- tainted
+[tid:304]--quartz.dll:0x7d062a0c --- mov dword ptr ds[esi+0xc], ecx --- tainted
+[tid:304]--quartz.dll:0x7d062a0f --- jb 0x134 --- tainted
+[tid:304]--quartz.dll:0x7d062a15 --- mov eax, dword ptr ss[ebp-0xc] --- tainted
+[tid:304]--quartz.dll:0x7d062a18 --- add dword ptr ds[esi+0x8], eax --- tainted
+[tid:304]--quartz.dll:0x7d062a1b --- mov eax, dword ptr ds[esi+0x8] --- tainted
+[tid:304]--quartz.dll:0x7d062a21 --- sub eax, dword ptr ds[ecx+0x8] --- tainted
+[tid:304]--quartz.dll:0x7d062a24 --- add dword ptr ds[edi], eax --- tainted
+[tid:304]--quartz.dll:0x7d062a26 --- mov ecx, dword ptr ds[esi+0x10] --- tainted
+[tid:304]--quartz.dll:0x7d062a29 --- mov al, byte ptr ds[ecx] --- tainted
+[tid:304]--quartz.dll:0x7d062a2b --- inc ecx --- tainted
+[tid:304]--quartz.dll:0x7d062a2c --- cmp al, 0x80 --- tainted
+[tid:304]--quartz.dll:0x7d062a2e --- mov dword ptr ds[esi+0x10], ecx --- tainted
+[tid:304]--quartz.dll:0x7d062a31 --- jnb 0x3b --- tainted
+[tid:304]--quartz.dll:0x7d062a6e --- cmp al, 0xf0 --- tainted
+[tid:304]--quartz.dll:0x7d062a70 --- jnb 0x32 --- tainted
+[tid:304]--quartz.dll:0x7d062a72 --- mov byte ptr ds[esi+0x20], al --- tainted
+[tid:304]--quartz.dll:0x7d062a75 --- mov byte ptr ds[edi+0xc], al --- tainted
+[tid:304]--quartz.dll:0x7d062a78 --- mov edx, dword ptr ds[esi+0x10] --- tainted
+[tid:304]--quartz.dll:0x7d062a7b --- mov dl, byte ptr ds[edx] --- tainted
+[tid:304]--quartz.dll:0x7d062a7d --- movzx eax, al --- tainted
+[tid:304]--quartz.dll:0x7d062a80 --- mov byte ptr ds[edi+0xd], dl --- tainted
+[tid:304]--quartz.dll:0x7d062a83 --- inc dword ptr ds[esi+0x10] --- tainted
+[tid:304]--quartz.dll:0x7d062a86 --- mov edx, dword ptr ds[esi+0x10] --- tainted
+[tid:304]--quartz.dll:0x7d062a89 --- shr eax, 0x4 --- tainted
+[tid:304]--quartz.dll:0x7d062a8c --- cmp dword ptr ds[eax*4+0x7d08cc90], ebx --- tainted

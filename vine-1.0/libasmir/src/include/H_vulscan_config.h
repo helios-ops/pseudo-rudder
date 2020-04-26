@@ -1,0 +1,30 @@
+#ifndef H_VULSCAN_CONFIG_H
+    #define H_VULSCAN_CONFIG_H
+
+    // TODO: several scanning rules could be defined here.
+
+    /*  when we encounter a path with a special SYM-ERROR condition, should we 
+	continue searching the path with other valid conditions ? 
+	Defining 'H_VULSCAN_ONCE_ENOUGH' would say 'no' to IR-SYMEXE, which would
+	in turn switch-off the SYM-EXE for the following part in the path.
+	otherwise, IR-SYMEXE should make a complete search which is not perfectly
+	implemented in the current version.
+     */
+    #ifndef H_VULSCAN_ONCE_ENOUGH
+        #define H_VULSCAN_ONCE_ENOUGH	
+    #endif
+    
+    #ifndef H_DEBUG_TEST
+	#define H_DEBUG_TEST
+
+	/*
+	// should we limit symaddr test range ??
+	#ifndef H_LIMIT_SYMADDR_TEST_RANGE
+	    #define H_LIMIT_SYMADDR_TEST_RANGE
+
+	    #define SYMADDR_RANGE 100
+	#endif
+	*/
+    #endif
+
+#endif

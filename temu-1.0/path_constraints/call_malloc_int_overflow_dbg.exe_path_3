@@ -1,0 +1,90 @@
+(LET let_k_0 = (H_FILE_source_C:\Experiments\call_malloc_int_overflow\call_malloc_int_overflow_dbg\a.txt__3 @ (H_FILE_source_C:\Experiments\call_malloc_int_overflow\call_malloc_int_overflow_dbg\a.txt__2 @ (H_FILE_source_C:\Experiments\call_malloc_int_overflow\call_malloc_int_overflow_dbg\a.txt__1 @ H_FILE_source_C:\Experiments\call_malloc_int_overflow\call_malloc_int_overflow_dbg\a.txt__0)
+)
+)
+,
+let_k_1 = BVSUB(32, 
+let_k_0, 
+0hex00000000)
+,
+let_k_2 = (H_FILE_source_C:\Experiments\call_malloc_int_overflow\call_malloc_int_overflow_dbg\a.txt__7 @ (H_FILE_source_C:\Experiments\call_malloc_int_overflow\call_malloc_int_overflow_dbg\a.txt__6 @ (H_FILE_source_C:\Experiments\call_malloc_int_overflow\call_malloc_int_overflow_dbg\a.txt__5 @ H_FILE_source_C:\Experiments\call_malloc_int_overflow\call_malloc_int_overflow_dbg\a.txt__4)
+)
+)
+,
+let_k_3 = BVSUB(32, 
+let_k_2, 
+0hex00000000)
+ IN 
+((TRUE AND NOT(NOT((0bin0000000000000000000000000000000 @ (BVXOR(IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ let_k_1[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF,IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ (BVXOR(let_k_0,0hex00000000)
+ & BVXOR(let_k_0,let_k_1)
+)[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+ | IF(NOT(IF(let_k_1 = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF))
+[0:0][0:0] = 0bin0
+) 
+) 
+
+) AND NOT((0bin0000000000000000000000000000000 @ (BVXOR(IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ let_k_3[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF,IF(NOT(IF(0hex00000001 = (0hex00000001 & (0bin0000000000000000000000000000000 @ (BVXOR(let_k_2,0hex00000000)
+ & BVXOR(let_k_2,let_k_3)
+)[31:31])
+)
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF)
+ | IF(NOT(IF(let_k_3 = 0hex00000000
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF[0:0] = 0bin0
+) 
+)
+THEN 0bin1
+ELSE 0bin0
+ENDIF))
+[0:0][0:0] = 0bin0
+) 
+
+))  
